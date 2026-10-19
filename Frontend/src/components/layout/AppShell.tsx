@@ -83,12 +83,15 @@ export const AppShell: React.FC = () => {
     navigate('/login', { replace: true });
   };
 
-  // Allow public access to store, shop, ads platform, and zbox
+  // Allow public access to store, shop, merchant zone, ads platform, zbox, and search
   const isPublicRoute =
     location.pathname.startsWith('/store') ||
     location.pathname.startsWith('/shop') ||
+    location.pathname.startsWith('/merchant-zone') ||
+    location.pathname.startsWith('/merchant') ||
     location.pathname.startsWith('/ads') ||
-    location.pathname.startsWith('/zbox');
+    location.pathname.startsWith('/zbox') ||
+    location.pathname.startsWith('/search');
 
   if (!user && !isPublicRoute) {
     return <Navigate to="/login" replace />;
@@ -689,7 +692,7 @@ export const AppShell: React.FC = () => {
 
               <NavLink
                 to="/user/search"
-                className={({ isActive }) => `sidebar-nav-item ${isActive || location.pathname === '/app/search' ? 'active' : ''}`}
+                className={({ isActive }) => `sidebar-nav-item ${isActive || location.pathname === '/app/search' || location.pathname.startsWith('/search') ? 'active' : ''}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <Search size={17} />

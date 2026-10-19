@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import {
   Search,
   Sparkles,
@@ -14,7 +15,8 @@ import {
   Sliders,
   Award,
   CheckCircle2,
-  ArrowRight
+  ArrowRight,
+  Mic
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import './SearchPage.css';
@@ -43,13 +45,30 @@ export const SearchPage: React.FC = () => {
     showToast
   } = useApp();
 
-  const [queryInput, setQueryInput] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const urlQuery = searchParams.get('q') || '';
+
+  const [queryInput, setQueryInput] = useState(urlQuery);
   const [copiedSummary, setCopiedSummary] = useState(false);
+
+  // Voice Search & Simulation State
+  const [isVoiceListening, setIsVoiceListening] = useState(false);
+  const [voiceNotice, setVoiceNotice] = useState<string | null>(null);
+  const voiceTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Part 10: Manual vs Automatic Web Search Trigger Mode
   const [triggerMode, setTriggerMode] = useState<'AUTO' | 'MANUAL'>('AUTO');
   const [autoDetectNotice, setAutoDetectNotice] = useState<string | null>(null);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Sync with URL query parameter (e.g. from Home Search Bar /search?q=...)
+  useEffect(() => {
+    const q = searchParams.get('q');
+    if (q && q.trim()) {
+      setQueryInput(q);
+      executeSearch(q.trim());
+    }
+  }, [searchParams]);
 
   // Part 10: Automatic Query Grounding trigger on typing (Debounced)
   useEffect(() => {
@@ -59,6 +78,7 @@ export const SearchPage: React.FC = () => {
 
       debounceTimerRef.current = setTimeout(() => {
         setAutoDetectNotice('⚡ Auto-Grounding Triggered: Sourcing live 2026 web indices');
+        setSearchParams({ q: queryInput.trim() }, { replace: true });
         executeSearch(queryInput.trim());
         setTimeout(() => setAutoDetectNotice(null), 3000);
       }, 900);
@@ -77,6 +97,7 @@ export const SearchPage: React.FC = () => {
     if (!queryInput.trim() || isSearching) return;
     if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
     setAutoDetectNotice(null);
+    setSearchParams({ q: queryInput.trim() }, { replace: true });
     executeSearch(queryInput.trim());
   };
 
@@ -86,7 +107,85 @@ export const SearchPage: React.FC = () => {
     if (triggerMode === 'AUTO') {
       showToast('⚡ Auto-Grounding triggered for trending query', 'info');
     }
+    setSearchParams({ q: chip.trim() }, { replace: true });
     executeSearch(chip);
+  };
+
+  // Voice Search / Simulation Handler
+  const handleVoiceSearch = () => {
+    if (isVoiceListening) {
+      setIsVoiceListening(false);
+      setVoiceNotice(null);
+      if (voiceTimeoutRef.current) clearTimeout(voiceTimeoutRef.current);
+      return;
+    }
+
+    setIsVoiceListening(true);
+    setVoiceNotice('Listening... Speak now');
+
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      try {
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'en-US';
+        recognition.interimResults = true;
+        recognition.onresult = (event: any) => {
+          const transcript = event.results[0][0].transcript;
+          setQueryInput(transcript);
+          setVoiceNotice(`Heard: "${transcript}"`);
+          if (event.results[0].isFinal) {
+            setIsVoiceListening(false);
+            setVoiceNotice(null);
+            setSearchParams({ q: transcript.trim() }, { replace: true });
+            executeSearch(transcript.trim());
+          }
+        };
+        recognition.onerror = () => {
+          runVoiceSimulation();
+        };
+        recognition.onend = () => {
+          setIsVoiceListening(false);
+        };
+        recognition.start();
+
+        voiceTimeoutRef.current = setTimeout(() => {
+          try { recognition.stop(); } catch (_) {}
+        }, 6000);
+        return;
+      } catch (_) {}
+    }
+
+    runVoiceSimulation();
+  };
+
+  const runVoiceSimulation = () => {
+    const voiceSamples = [
+      'Top 2026 AI agent frameworks and benchmarks',
+      'Solid-state battery commercialization timeline 2026',
+      'Executive B2B marketing funnel and SEO topical cluster',
+      'Autonomous creator economy monetization strategies'
+    ];
+    const chosen = voiceSamples[Math.floor(Math.random() * voiceSamples.length)];
+    setVoiceNotice('Listening... (Simulating Voice Input)');
+
+    let wordIdx = 0;
+    const words = chosen.split(' ');
+    setQueryInput('');
+
+    const interval = setInterval(() => {
+      wordIdx++;
+      setQueryInput(words.slice(0, wordIdx).join(' '));
+      if (wordIdx >= words.length) {
+        clearInterval(interval);
+        setVoiceNotice(`Voice Captured: "${chosen}"`);
+        voiceTimeoutRef.current = setTimeout(() => {
+          setIsVoiceListening(false);
+          setVoiceNotice(null);
+          setSearchParams({ q: chosen }, { replace: true });
+          executeSearch(chosen);
+        }, 800);
+      }
+    }, 160);
   };
 
   const handleCopySummary = () => {
@@ -263,6 +362,7 @@ export const SearchPage: React.FC = () => {
               setQueryInput('');
               clearSearch();
               setAutoDetectNotice(null);
+              setSearchParams({}, { replace: true });
               if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
             }}
             style={{ padding: '4px' }}
@@ -272,6 +372,18 @@ export const SearchPage: React.FC = () => {
           </button>
         )}
 
+        {/* Voice Search Button */}
+        <button
+          type="button"
+          className={`search-mic-btn ${isVoiceListening ? 'listening' : ''}`}
+          onClick={handleVoiceSearch}
+          title={isVoiceListening ? "Listening... click to cancel" : "Voice Search (Click to speak or simulate input)"}
+          aria-label="Voice Search"
+        >
+          <Mic size={18} />
+          {isVoiceListening && <span className="mic-pulse-ring" />}
+        </button>
+
         <button
           type="submit"
           className="btn btn-primary"
@@ -280,6 +392,14 @@ export const SearchPage: React.FC = () => {
           {isSearching ? 'Searching...' : 'Search'}
         </button>
       </form>
+
+      {/* Voice Status Pill */}
+      {voiceNotice && (
+        <div className="search-voice-notice-banner">
+          <span className="voice-pulse-dot" />
+          <span>{voiceNotice}</span>
+        </div>
+      )}
 
       {/* Auto-Grounding Detection Notice */}
       {autoDetectNotice && (

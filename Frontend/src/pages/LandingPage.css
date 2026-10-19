@@ -1186,6 +1186,88 @@
   font-size: 14px;
 }
 
+.hero-clear-btn {
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  padding: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 4px;
+  transition: all 0.2s ease;
+}
+
+.hero-clear-btn:hover {
+  color: #111625;
+  background: #F1F5F9;
+}
+
+/* Dev 1 Google-Style Search Bar Mic Button */
+.hero-mic-btn {
+  background: transparent;
+  border: none;
+  color: #64748B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 8px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.hero-mic-btn:hover {
+  color: #6E56CF;
+  background: rgba(110, 86, 207, 0.08);
+}
+
+.hero-mic-btn.active-listening {
+  color: #EF4444;
+  background: rgba(239, 68, 68, 0.12);
+  animation: micPulse 1.4s infinite ease-in-out;
+}
+
+.hero-ask-form.listening {
+  border-color: #EF4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15), 0 16px 40px -6px rgba(239, 68, 68, 0.1);
+  animation: none;
+}
+
+.hero-voice-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: #FFFFFF;
+  border: 1px solid rgba(110, 86, 207, 0.25);
+  border-radius: var(--radius-full);
+  color: #6E56CF;
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 10px;
+  box-shadow: 0 4px 14px rgba(110, 86, 207, 0.1);
+  animation: heroFadeUp 0.3s ease;
+}
+
+.mic-pulse-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid #EF4444;
+  animation: pulseRing 1.6s infinite ease-out;
+  pointer-events: none;
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(0.9); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
 .hero-ask-btn {
   display: inline-flex;
   align-items: center;
@@ -4038,6 +4120,32 @@
   }
   .cta-title {
     font-size: 26px;
+  }
+  .hero-ask-form {
+    flex-direction: row;
+    align-items: center;
+    border-radius: var(--radius-full, 9999px);
+    padding: 4px 6px 4px 12px;
+  }
+  .hero-ask-input {
+    font-size: 13px;
+    min-width: 0;
+  }
+  .hero-ask-btn {
+    padding: 8px 14px;
+    font-size: 12.5px;
+    width: auto;
+  }
+  .hero-mic-btn {
+    padding: 6px;
+    margin-right: 2px;
+  }
+  .hero-prompt-chips {
+    gap: 6px;
+  }
+  .prompt-chip {
+    font-size: 11px;
+    padding: 4px 10px;
   }
   .footer-bottom {
     flex-direction: column;

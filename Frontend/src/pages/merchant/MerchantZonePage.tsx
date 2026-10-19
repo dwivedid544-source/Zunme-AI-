@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import {
   Store,
@@ -135,6 +135,13 @@ export const MerchantZonePage: React.FC = () => {
     }
     return 'overview';
   });
+
+  // Sync tab with section route parameter
+  useEffect(() => {
+    if (section && ['overview', 'listings', 'feed-upload', 'visibility-ads', 'analytics'].includes(section.toLowerCase())) {
+      setActiveTab(section.toLowerCase() as MerchantTab);
+    }
+  }, [section]);
 
   const [products, setProducts] = useState<MerchantProduct[]>(INITIAL_MERCHANT_PRODUCTS);
   const [searchQuery, setSearchQuery] = useState('');

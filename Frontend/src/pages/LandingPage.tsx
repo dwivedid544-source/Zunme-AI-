@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, useSearchParams, useNavigate } from 'react-router-dom';
 import {
   Sparkles,
@@ -44,7 +44,8 @@ import {
   Bot,
   Eye,
   Lock,
-  Share2
+  Share2,
+  Mic
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { DashboardLoginModal } from '../components/modals/DashboardLoginModal';
@@ -325,6 +326,10 @@ export const LandingPage: React.FC = () => {
   const navigate = useNavigate();
   const [askZunmeQuery, setAskZunmeQuery] = useState('');
   const [isSubmittingQuery, setIsSubmittingQuery] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+  const [voiceStatusText, setVoiceStatusText] = useState<string | null>(null);
+  const voiceRecognitionRef = useRef<any>(null);
+  const voiceTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [copiedSnippet, setCopiedSnippet] = useState(false);
   const [activeSection, setActiveSection] = useState<LandingSection>('all');
@@ -368,14 +373,108 @@ export const LandingPage: React.FC = () => {
     }, 80);
   };
 
+  // Connect Home Search Bar: Enter press / submit navigates to /search?q=...
   const handleAskZunmeSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!askZunmeQuery.trim()) return;
-    setIsSubmittingQuery(true);
-    setTimeout(() => {
-      setIsSubmittingQuery(false);
-      navigate(`/login?prompt=${encodeURIComponent(askZunmeQuery.trim())}`);
-    }, 300);
+    if (isListening) {
+      if (voiceRecognitionRef.current) {
+        try { voiceRecognitionRef.current.stop(); } catch (_) {}
+      }
+      setIsListening(false);
+    }
+    navigate(`/search?q=${encodeURIComponent(askZunmeQuery.trim())}`);
+  };
+
+  const handlePromptChipClick = (query: string) => {
+    setAskZunmeQuery(query);
+    navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+  };
+
+  // Voice Search & Voice Input Simulation via Mic Icon
+  const handleVoiceSearch = () => {
+    if (isListening) {
+      if (voiceRecognitionRef.current) {
+        try { voiceRecognitionRef.current.stop(); } catch (_) {}
+      }
+      if (voiceTimeoutRef.current) clearTimeout(voiceTimeoutRef.current);
+      setIsListening(false);
+      setVoiceStatusText(null);
+      return;
+    }
+
+    setIsListening(true);
+    setVoiceStatusText('Listening... Speak now');
+
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      try {
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'en-US';
+        recognition.interimResults = true;
+        recognition.maxAlternatives = 1;
+        voiceRecognitionRef.current = recognition;
+
+        recognition.onresult = (event: any) => {
+          const transcript = event.results[0][0].transcript;
+          setAskZunmeQuery(transcript);
+          setVoiceStatusText(`Heard: "${transcript}"`);
+          if (event.results[0].isFinal) {
+            setIsListening(false);
+            setVoiceStatusText(null);
+            setTimeout(() => {
+              navigate(`/search?q=${encodeURIComponent(transcript.trim())}`);
+            }, 400);
+          }
+        };
+
+        recognition.onerror = () => {
+          runVoiceSimulation();
+        };
+
+        recognition.onend = () => {
+          setIsListening(false);
+        };
+
+        recognition.start();
+
+        voiceTimeoutRef.current = setTimeout(() => {
+          try { recognition.stop(); } catch (_) {}
+        }, 6000);
+        return;
+      } catch (_) {}
+    }
+
+    runVoiceSimulation();
+  };
+
+  const runVoiceSimulation = () => {
+    const samplePrompts = [
+      'Top 2026 AI content creator monetization models',
+      'Explain clean energy solid-state battery breakthroughs',
+      'Draft a high-converting B2B SaaS cold outreach strategy',
+      'Explain SEO topical cluster architecture with internal link hierarchy'
+    ];
+    const chosenPrompt = samplePrompts[Math.floor(Math.random() * samplePrompts.length)];
+    setVoiceStatusText('Listening... (Simulating Voice Input)');
+
+    let currentIdx = 0;
+    const words = chosenPrompt.split(' ');
+    setAskZunmeQuery('');
+
+    const interval = setInterval(() => {
+      currentIdx++;
+      setAskZunmeQuery(words.slice(0, currentIdx).join(' '));
+      if (currentIdx >= words.length) {
+        clearInterval(interval);
+        setVoiceStatusText(`Voice Captured: "${chosenPrompt}"`);
+        voiceTimeoutRef.current = setTimeout(() => {
+          setIsListening(false);
+          setVoiceStatusText(null);
+          navigate(`/search?q=${encodeURIComponent(chosenPrompt.trim())}`);
+        }, 900);
+      }
+    }, 170);
   };
 
 
@@ -1256,50 +1355,82 @@ export const LandingPage: React.FC = () => {
             <span>Single Sign-On (SSO): Users have the option to use one password to access all Zunme platforms</span>
           </div>
 
-          {/* Ask Zunme Interactive Search Bar directly in Hero */}
+          {/* Dev 1 Active Google-Style Interactive Search Bar in Hero */}
           <div className="hero-ask-zunme-wrap">
-            <form onSubmit={handleAskZunmeSubmit} className="hero-ask-form">
-              <div className="hero-ask-icon">
-                <Sparkles size={18} />
+            <form onSubmit={handleAskZunmeSubmit} className={`hero-ask-form ${isListening ? 'listening' : ''}`}>
+              <div className="hero-ask-icon" title="Search with Zunme AI">
+                <Search size={19} />
               </div>
               <input
                 type="text"
                 className="hero-ask-input"
-                placeholder="Ask Zunme anything... (e.g., 'Research 2026 SaaS trends and draft an executive brief')"
+                placeholder={isListening ? "Listening... Speak your query" : "Search with Zunme AI or ask anything... (e.g., '2026 AI agent trends')"}
                 value={askZunmeQuery}
                 onChange={(e) => setAskZunmeQuery(e.target.value)}
                 disabled={isSubmittingQuery}
               />
+
+              {askZunmeQuery && (
+                <button
+                  type="button"
+                  className="hero-clear-btn"
+                  onClick={() => setAskZunmeQuery('')}
+                  title="Clear search"
+                  aria-label="Clear search"
+                >
+                  <X size={16} />
+                </button>
+              )}
+
+              {/* Dev 1 Google Search Bar Mic Icon (Active Voice Input Simulation) */}
+              <button
+                type="button"
+                className={`hero-mic-btn ${isListening ? 'active-listening' : ''}`}
+                onClick={handleVoiceSearch}
+                title={isListening ? "Listening... Click to stop" : "Voice Search (Click to speak or simulate voice)"}
+                aria-label="Voice Search"
+              >
+                <Mic size={19} />
+                {isListening && <span className="mic-pulse-ring" />}
+              </button>
+
               <button
                 type="submit"
                 className="hero-ask-btn"
                 disabled={isSubmittingQuery || !askZunmeQuery.trim()}
               >
-                <span>{isSubmittingQuery ? 'Grounding...' : 'Ask Zunme'}</span>
+                <span>Search</span>
                 <ArrowRight size={14} />
               </button>
             </form>
+
+            {voiceStatusText && (
+              <div className="hero-voice-status-pill">
+                <span className="voice-pulse-dot" />
+                <span>{voiceStatusText}</span>
+              </div>
+            )}
 
             <div className="hero-prompt-chips">
               <span className="chips-label">Popular Prompts:</span>
               <button
                 type="button"
                 className="prompt-chip"
-                onClick={() => setAskZunmeQuery('Synthesize top 2026 AI content creator monetization models')}
+                onClick={() => handlePromptChipClick('Synthesize top 2026 AI content creator monetization models')}
               >
                 "Top 2026 Creator Monetization Models"
               </button>
               <button
                 type="button"
                 className="prompt-chip"
-                onClick={() => setAskZunmeQuery('Draft a high-converting B2B LinkedIn carousel hook sequence')}
+                onClick={() => handlePromptChipClick('Draft a high-converting B2B LinkedIn carousel hook sequence')}
               >
                 "B2B LinkedIn Carousel Hooks"
               </button>
               <button
                 type="button"
                 className="prompt-chip"
-                onClick={() => setAskZunmeQuery('Explain SEO topical cluster architecture with internal link hierarchy')}
+                onClick={() => handlePromptChipClick('Explain SEO topical cluster architecture with internal link hierarchy')}
               >
                 "SEO Topical Cluster Blueprint"
               </button>

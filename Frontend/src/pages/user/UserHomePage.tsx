@@ -13,7 +13,8 @@ import {
   Zap,
   Package,
   Layers,
-  ChevronRight
+  ChevronRight,
+  Mic
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import '../../styles/dashboard.css';
@@ -29,6 +30,7 @@ export const UserHomePage: React.FC = () => {
   } = useApp();
 
   const [promptInput, setPromptInput] = useState('');
+  const [isVoiceListening, setIsVoiceListening] = useState(false);
   const navigate = useNavigate();
 
   const handleStartPrompt = (e: React.FormEvent) => {
@@ -37,6 +39,53 @@ export const UserHomePage: React.FC = () => {
     createNewChat();
     sendMessage(promptInput.trim());
     navigate('/user/chat');
+  };
+
+  const handleVoiceInput = () => {
+    if (isVoiceListening) {
+      setIsVoiceListening(false);
+      return;
+    }
+    setIsVoiceListening(true);
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      try {
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'en-US';
+        recognition.onresult = (event: any) => {
+          const text = event.results[0][0].transcript;
+          setPromptInput(text);
+          if (event.results[0].isFinal) {
+            setIsVoiceListening(false);
+          }
+        };
+        recognition.onerror = () => simulateVoice();
+        recognition.onend = () => setIsVoiceListening(false);
+        recognition.start();
+        return;
+      } catch (_) {}
+    }
+    simulateVoice();
+  };
+
+  const simulateVoice = () => {
+    const samples = [
+      'Compare 2026 clean energy innovations and market outlook',
+      'Draft a high-converting launch email for my B2B software',
+      'Outline an SEO pillar article with topical clusters'
+    ];
+    const chosen = samples[Math.floor(Math.random() * samples.length)];
+    let idx = 0;
+    const words = chosen.split(' ');
+    setPromptInput('');
+    const iv = setInterval(() => {
+      idx++;
+      setPromptInput(words.slice(0, idx).join(' '));
+      if (idx >= words.length) {
+        clearInterval(iv);
+        setIsVoiceListening(false);
+      }
+    }, 160);
   };
 
   const handleQuickPromptClick = (text: string) => {
@@ -76,20 +125,45 @@ export const UserHomePage: React.FC = () => {
             <input
               type="text"
               className="input-field home-ask-input"
-              placeholder="Ask Zunme anything, brainstorm a topic, or generate copy..."
+              placeholder={isVoiceListening ? "Listening... speak now" : "Ask Zunme anything, brainstorm a topic, or generate copy..."}
               value={promptInput}
               onChange={(e) => setPromptInput(e.target.value)}
               style={{
                 height: '52px',
                 fontSize: '15px',
-                paddingRight: '120px',
+                paddingRight: '165px',
                 background: '#FFFFFF',
-                borderColor: '#E2E6F2',
+                borderColor: isVoiceListening ? '#EF4444' : '#E2E6F2',
                 color: '#111625',
                 borderRadius: 'var(--radius-full)',
                 boxShadow: '0 2px 8px rgba(30, 20, 60, 0.04)'
               }}
             />
+            {/* Mic Voice Button */}
+            <button
+              type="button"
+              onClick={handleVoiceInput}
+              title={isVoiceListening ? "Listening... click to stop" : "Voice input (Click to speak or simulate voice)"}
+              style={{
+                position: 'absolute',
+                right: '122px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: isVoiceListening ? 'rgba(239, 68, 68, 0.12)' : 'transparent',
+                color: isVoiceListening ? '#EF4444' : '#64748B',
+                border: 'none',
+                borderRadius: '50%',
+                width: '34px',
+                height: '34px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              <Mic size={17} />
+            </button>
             <button
               type="submit"
               className="btn btn-primary home-ask-btn"
