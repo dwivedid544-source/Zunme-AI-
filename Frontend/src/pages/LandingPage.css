@@ -5524,225 +5524,110 @@
 /* Tablet & Mobile Screens (<= 768px) */
 @media (max-width: 768px) {
   .landing-page {
-    height: auto;
-    min-height: 100vh;
-    min-height: 100dvh;
-    overflow-y: auto;
+    height: auto !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 100%;
+    max-width: 100%;
   }
 
   .google-top-right-brand {
-    top: 60px;
-    right: 14px;
-  }
-
-  .google-top-right-logo-img {
-    height: 28px;
+    display: none !important;
   }
 
   .google-landing-header .mobile-menu-btn {
     display: none !important;
   }
 
+  .google-landing-header {
+    background: rgba(255, 255, 255, 0.94) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(232, 236, 245, 0.9) !important;
+  }
+
   .google-header-content {
-    padding: 0 12px;
+    padding: 0 16px;
     height: 54px;
-    gap: 8px;
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .google-nav-left {
     gap: 8px;
+    display: flex;
+    align-items: center;
   }
 
   .google-brand-mini-logo {
     height: 24px;
+    width: auto;
+    display: block;
   }
 
   .google-nav-link {
     font-size: 13px;
-    padding: 4px 8px;
+    padding: 4px 6px;
     font-weight: 600;
+    color: #475569;
   }
 
   .google-nav-right {
     gap: 8px;
-  }
-
-  .google-nav-icon-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-  }
-
-  .google-nav-icon-img {
-    width: 28px;
-    height: 28px;
-  }
-
-  .google-nav-icon-btn svg {
-    width: 28px;
-    height: 28px;
-  }
-
-  .google-doc-signin-btn {
-    padding: 5px 12px;
-    font-size: 12px;
-    border-radius: 8px;
-    gap: 5px;
-    white-space: nowrap;
-  }
-
-  .google-doc-signin-pointer {
-    width: 12px;
-    height: 12px;
-  }
-
-  .google-home-stage {
-    padding: 24px 14px 40px;
-    min-height: calc(100vh - 110px);
-    justify-content: flex-start;
-  }
-
-  .google-brand-block {
-    margin-bottom: 20px;
-  }
-
-  .google-brand-logo-img {
-    height: 44px;
-  }
-
-  .google-brand-wordmark {
-    font-size: 32px;
-    letter-spacing: 0.22em;
-    margin-left: 0.22em;
-    margin-bottom: 8px;
-  }
-
-  .google-brand-tagline {
-    font-size: 20px;
-    max-width: 520px;
-    margin-bottom: 8px;
-  }
-
-  .google-brand-subtitle {
-    font-size: 13.5px;
-    line-height: 1.5;
-    max-width: 500px;
-  }
-
-  .google-search-container {
-    max-width: 100%;
-    margin: 0 auto 20px !important;
-  }
-
-  .google-search-bar {
-    padding: 5px 12px 5px 16px;
-  }
-
-  .google-search-input-field {
-    font-size: 14.5px;
-    padding: 6px 0;
-  }
-
-  .google-hero-caption {
-    font-size: 13px;
-    padding: 5px 14px;
-    margin-top: 0 !important;
-    margin-bottom: 18px !important;
-  }
-
-  .google-capabilities-group {
-    margin-bottom: 22px;
-  }
-
-  .google-pills-row {
-    gap: 8px;
-  }
-
-  .google-capability-pill {
-    padding: 7px 14px;
-    font-size: 12.5px;
-  }
-
-  .google-speed-note-strip {
-    font-size: 11.5px;
-    padding: 5px 14px;
-    max-width: 95%;
-  }
-
-  .google-style-footer {
-    flex-direction: column;
+    display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 16px 14px;
-  }
-
-  .google-footer-left,
-  .google-footer-right {
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .google-footer-link {
-    font-size: 12.5px;
-  }
-}
-
-/* Standard Mobile Devices (<= 480px, e.g. iPhone 13/14/15/16, Galaxy S, Pixel) */
-@media (max-width: 480px) {
-  .google-top-right-brand {
-    top: 56px;
-    right: 10px;
-  }
-
-  .google-top-right-logo-img {
-    height: 22px;
-  }
-
-  .google-header-content {
-    padding: 0 8px;
-    height: 50px;
-    gap: 4px;
-  }
-
-  .google-nav-left {
-    gap: 2px;
-  }
-
-  .google-brand-mini-logo {
-    height: 22px;
-  }
-
-  .google-nav-link {
-    font-size: 12px;
-    padding: 3px 6px;
-  }
-
-  .google-nav-right {
-    gap: 4px;
   }
 
   .google-nav-icon-btn {
     width: 32px;
     height: 32px;
-    border-radius: 6px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(241, 245, 249, 0.7);
+    border: 1px solid rgba(226, 232, 240, 0.85);
+    transition: all 0.18s ease;
+  }
+
+  .google-nav-icon-btn:active {
+    transform: scale(0.94);
+    background: #E2E8F0;
   }
 
   .google-nav-icon-img {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
   }
 
   .google-nav-icon-btn svg {
-    width: 24px;
-    height: 24px;
+    width: 22px !important;
+    height: 22px !important;
   }
 
   .google-doc-signin-btn {
-    padding: 4px 8px;
-    font-size: 11px;
-    border-radius: 6px;
-    gap: 3px;
+    padding: 6px 13px;
+    font-size: 11.5px;
+    font-weight: 800;
+    border-radius: 9999px;
+    gap: 4px;
+    white-space: nowrap;
+    background: linear-gradient(135deg, #1E1648 0%, #6E56CF 100%) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 2px 8px rgba(110, 86, 207, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
   }
 
   .google-doc-signin-pointer {
@@ -5751,36 +5636,292 @@
   }
 
   .google-home-stage {
-    padding: 16px 10px 32px;
+    padding: 24px 16px 20px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1 0 auto;
+    min-height: auto;
   }
 
   .google-brand-block {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .google-brand-logo-img {
-    height: 38px;
-    margin-bottom: 6px;
+    height: 42px;
   }
 
   .google-brand-wordmark {
-    font-size: 26px;
-    letter-spacing: 0.18em;
-    margin-left: 0.18em;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 0.26em;
+    margin-left: 0.26em;
+    margin-bottom: 6px;
+    background: linear-gradient(135deg, #1C1548 0%, #6E56CF 55%, #D946EF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .google-brand-tagline {
-    font-size: 17px;
+    font-size: 19px;
+    font-weight: 800;
+    color: #111625;
+    letter-spacing: -0.02em;
     line-height: 1.35;
+    margin-bottom: 8px;
+    text-align: center;
+    max-width: 440px;
   }
 
   .google-brand-subtitle {
-    font-size: 12px;
-    line-height: 1.45;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #64748B;
+    max-width: 400px;
+    margin: 0 auto 16px;
+    text-align: center;
+  }
+
+  .google-search-container {
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto 16px !important;
+    padding: 0 4px;
+    box-sizing: border-box;
   }
 
   .google-search-bar {
-    padding: 4px 8px 4px 12px;
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    padding: 0 8px 0 16px;
+    background: #FFFFFF;
+    border: 1.5px solid rgba(110, 86, 207, 0.22);
+    border-radius: 9999px;
+    box-shadow: 0 4px 18px rgba(110, 86, 207, 0.09), 0 1px 3px rgba(0, 0, 0, 0.04);
+    display: flex;
+    align-items: center;
+  }
+
+  .google-search-lens {
+    margin-right: 10px;
+  }
+
+  .google-search-lens svg {
+    width: 18px;
+    height: 18px;
+    color: #6E56CF;
+  }
+
+  .google-search-input-field {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1E293B;
+    padding: 0;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .google-search-input-field::placeholder {
+    font-size: 12.5px;
+    color: #94A3B8;
+  }
+
+  .google-search-mic-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .google-hero-caption {
+    font-size: 12px;
+    font-weight: 700;
+    color: #6E56CF;
+    background: rgba(110, 86, 207, 0.08);
+    border: 1px solid rgba(110, 86, 207, 0.2);
+    border-radius: 9999px;
+    padding: 6px 14px;
+    margin-top: 0 !important;
+    margin-bottom: 16px !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .google-capabilities-group {
+    width: 100%;
+    max-width: 440px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Luxurious 2-Column Grid on Mobile for Perfect Symmetry & Readability */
+  .google-pills-row {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 9px !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 0 auto 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  .google-capability-pill {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 7px !important;
+    padding: 9px 10px !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: #1E293B !important;
+    white-space: nowrap !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(226, 232, 240, 0.95) !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    text-decoration: none !important;
+  }
+
+  .google-capability-pill:active {
+    transform: scale(0.97) !important;
+    background: #F8FAFC !important;
+    border-color: rgba(110, 86, 207, 0.4) !important;
+  }
+
+  .google-capability-pill svg {
+    width: 14px !important;
+    height: 14px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .google-capabilities-caption {
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: #64748B;
+    max-width: 380px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .google-style-footer {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 16px 20px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(232, 236, 245, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .google-footer-left,
+  .google-footer-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .google-footer-link {
+    font-size: 12px;
+    color: #64748B;
+    font-weight: 500;
+  }
+}
+
+/* Standard Mobile Devices (<= 480px, e.g. iPhone 13/14/15/16, Galaxy S, Pixel) */
+@media (max-width: 480px) {
+  .google-header-content {
+    padding: 0 12px;
+    height: 52px;
+    gap: 6px;
+  }
+
+  .google-brand-mini-logo {
+    height: 22px;
+  }
+
+  .google-nav-link {
+    font-size: 12.5px;
+    padding: 3px 5px;
+  }
+
+  .google-nav-icon-btn {
+    width: 30px;
+    height: 30px;
+  }
+
+  .google-nav-icon-img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .google-nav-icon-btn svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .google-doc-signin-btn {
+    padding: 5px 11px;
+    font-size: 11.5px;
+  }
+
+  .google-home-stage {
+    padding: 20px 14px 18px;
+    max-width: 420px;
+  }
+
+  .google-brand-wordmark {
+    font-size: 30px;
+    letter-spacing: 0.24em;
+    margin-left: 0.24em;
+    margin-bottom: 5px;
+  }
+
+  .google-brand-tagline {
+    font-size: 18px;
+    margin-bottom: 6px;
+    max-width: 380px;
+  }
+
+  .google-brand-subtitle {
+    font-size: 12.5px;
+    line-height: 1.48;
+    max-width: 350px;
+    margin: 0 auto 14px;
+  }
+
+  .google-search-container {
+    max-width: 100%;
+    margin: 0 auto 14px !important;
+    padding: 0;
+  }
+
+  .google-search-bar {
+    height: 48px;
+    padding: 0 6px 0 14px;
   }
 
   .google-search-lens {
@@ -5793,8 +5934,7 @@
   }
 
   .google-search-input-field {
-    font-size: 13px;
-    padding: 6px 0;
+    font-size: 13.5px;
   }
 
   .google-search-input-field::placeholder {
@@ -5802,59 +5942,41 @@
   }
 
   .google-search-mic-btn {
-    width: 32px;
-    height: 32px;
-  }
-
-  .google-search-mic-btn svg {
-    width: 17px;
-    height: 17px;
-  }
-
-  .google-search-container {
-    margin: 0 auto 18px !important;
+    width: 34px;
+    height: 34px;
   }
 
   .google-hero-caption {
-    font-size: 12px;
-    padding: 4px 12px;
-    margin-top: 0 !important;
-    margin-bottom: 16px !important;
+    font-size: 11.5px;
+    padding: 5px 12px;
+    margin-bottom: 14px !important;
   }
 
   .google-pills-row {
-    gap: 6px;
+    gap: 8px !important;
+    max-width: 360px !important;
+    margin: 0 auto 10px !important;
   }
 
   .google-capability-pill {
-    padding: 6px 11px;
-    font-size: 11.5px;
-    gap: 5px;
-  }
-
-  .google-capability-pill svg {
-    width: 13px;
-    height: 13px;
+    padding: 8px 8px !important;
+    font-size: 11.5px !important;
+    border-radius: 10px !important;
   }
 
   .google-capabilities-caption {
-    font-size: 11.5px;
-  }
-
-  .google-speed-note-strip {
-    font-size: 10.5px;
-    padding: 4px 10px;
-    gap: 6px;
+    font-size: 11px;
+    max-width: 350px;
   }
 
   .google-style-footer {
-    gap: 10px;
-    padding: 14px 10px;
+    padding: 12px 14px 18px;
+    gap: 6px;
   }
 
   .google-footer-left,
   .google-footer-right {
-    gap: 12px;
+    gap: 14px;
   }
 
   .google-footer-link {
@@ -5869,31 +5991,23 @@
 
 /* Extra Small Phones (<= 360px, e.g. iPhone SE 1st gen, Galaxy Fold outer screen) */
 @media (max-width: 360px) {
-  .google-top-right-brand {
-    top: 52px;
-    right: 6px;
-  }
-
-  .google-top-right-logo-img {
-    height: 18px;
-  }
-
   .google-header-content {
-    padding: 0 4px;
-    gap: 2px;
+    padding: 0 8px;
+    gap: 4px;
+    height: 48px;
   }
 
-  .google-brand-mini-link {
-    display: none;
+  .google-brand-mini-logo {
+    height: 20px;
   }
 
   .google-nav-link {
-    font-size: 11px;
+    font-size: 11.5px;
     padding: 2px 4px;
   }
 
   .google-nav-right {
-    gap: 3px;
+    gap: 4px;
   }
 
   .google-nav-icon-btn {
@@ -5902,33 +6016,52 @@
   }
 
   .google-nav-icon-img {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
 
   .google-nav-icon-btn svg {
-    width: 20px;
-    height: 20px;
+    width: 18px !important;
+    height: 18px !important;
   }
 
   .google-doc-signin-btn {
-    padding: 3px 6px;
-    font-size: 10px;
+    padding: 4px 8px;
+    font-size: 10.5px;
     gap: 2px;
   }
 
+  .google-doc-signin-pointer {
+    width: 8px;
+    height: 8px;
+  }
+
   .google-brand-wordmark {
-    font-size: 22px;
-    letter-spacing: 0.14em;
-    margin-left: 0.14em;
+    font-size: 26px;
+    letter-spacing: 0.2em;
+    margin-left: 0.2em;
   }
 
   .google-brand-tagline {
-    font-size: 15px;
+    font-size: 16px;
+  }
+
+  .google-pills-row {
+    gap: 6px !important;
   }
 
   .google-capability-pill {
-    padding: 5px 9px;
-    font-size: 10.5px;
+    padding: 7px 6px !important;
+    font-size: 10.5px !important;
+    gap: 4px !important;
+  }
+
+  .google-footer-left,
+  .google-footer-right {
+    gap: 10px;
+  }
+
+  .google-footer-link {
+    font-size: 11px;
   }
 }

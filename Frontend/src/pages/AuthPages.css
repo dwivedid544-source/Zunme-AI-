@@ -712,32 +712,66 @@
 /* Tablets and Mobile Responsive Behavior (1040px and below) */
 @media (max-width: 1040px) {
   .energy-auth-page {
-    height: auto;
-    min-height: 100vh;
-    max-height: none;
-    overflow-y: auto;
-    overflow-x: hidden;
+    height: auto !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .energy-auth-topbar {
+    height: 56px;
+    padding: 0 20px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: sticky;
+    top: 0;
+    z-index: 20;
   }
 
   .energy-auth-main {
-    overflow-y: visible;
-    padding: 28px 20px 48px 20px;
+    flex: 1 0 auto;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    overflow-y: visible !important;
+    overflow-x: hidden !important;
+    min-height: auto !important;
+    padding: 24px 20px 48px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .energy-auth-grid {
     grid-template-columns: 1fr;
     max-height: none;
     height: auto;
-    gap: 28px;
-    max-width: 540px;
-    margin: 0 auto;
+    gap: 24px;
+    max-width: 520px;
+    margin: 0 auto !important;
     width: 100%;
+    align-items: stretch;
   }
 
   .energy-login-card {
     max-width: 100%;
     margin: 0 auto;
     width: 100%;
+    padding: 26px 24px;
+    border-radius: 22px;
+    box-shadow: 0 12px 36px -8px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(110, 86, 207, 0.08);
   }
 
   .energy-personas-panel {
@@ -745,39 +779,52 @@
     margin: 0 auto;
     width: 100%;
     height: auto;
+    padding: 22px 20px;
+    border-radius: 22px;
   }
 
   .energy-personas-grid {
+    grid-template-columns: 1fr;
     grid-template-rows: auto;
+    gap: 8px;
   }
 }
 
 @media (max-width: 640px) {
   .energy-auth-topbar {
-    padding: 0 16px;
-    height: 56px;
+    padding: 0 14px;
+    height: 52px;
   }
 
   .energy-status-tag {
     display: none;
   }
 
+  .energy-topbar-brand span {
+    font-size: 14px;
+  }
+
   .energy-auth-main {
-    padding: 20px 14px 44px 14px;
+    padding: 16px 12px 48px;
   }
 
   .energy-auth-grid {
-    gap: 20px;
+    gap: 18px;
     max-width: 100%;
   }
 
   .energy-login-card {
-    padding: 24px 18px;
+    padding: 22px 16px;
     border-radius: 20px;
   }
 
   .energy-card-title {
     font-size: 1.2rem;
+  }
+
+  .energy-personas-panel {
+    padding: 18px 14px;
+    border-radius: 20px;
   }
 
   .energy-panel-title {
@@ -792,19 +839,21 @@
   .energy-persona-card {
     height: 52px;
     padding: 6px 12px;
+    border-radius: 12px;
   }
 
   .persona-icon-box {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
   }
 
   .persona-name {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
+    font-weight: 700;
   }
 
   .persona-sub {
-    font-size: 0.65rem;
+    font-size: 0.68rem;
   }
 
   .energy-personas-bottom {

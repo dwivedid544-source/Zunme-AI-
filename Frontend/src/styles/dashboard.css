@@ -587,10 +587,32 @@
     gap: var(--space-3);
   }
 
-  .cards-grid-2, .cards-grid-3, .cards-grid-4, .plans-pricing-grid {
+  .cards-grid-2, .cards-grid-3, .plans-pricing-grid {
     grid-template-columns: minmax(0, 1fr) !important;
     width: 100% !important;
     min-width: 0 !important;
+  }
+
+  /* 4-KPI Metric Cards: Compact 2x2 Grid on Mobile instead of huge vertical stack */
+  .cards-grid-4 {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .cards-grid-4 > .glass-panel {
+    padding: 12px 12px !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  .cards-grid-4 > .glass-panel div[style*="font-size: 28px"],
+  .cards-grid-4 > .glass-panel div[style*="font-size: 20px"] {
+    font-size: 19px !important;
+    margin-top: 2px !important;
+    line-height: 1.2 !important;
   }
 
   .cards-grid-2 > *, .cards-grid-3 > *, .cards-grid-4 > *, .plans-pricing-grid > *, .glass-panel {
@@ -607,7 +629,16 @@
 
   .dashboard-header-actions {
     width: 100%;
+    display: flex;
     gap: 8px;
+  }
+
+  .dashboard-header-actions .btn {
+    flex: 1;
+    justify-content: center;
+    padding: 7px 10px;
+    font-size: 11.5px;
+    white-space: nowrap;
   }
 
   .filter-toolbar {
@@ -623,18 +654,27 @@
   }
 
   .tabs-nav-bar {
-    padding: 6px;
+    padding: 4px;
+    gap: 6px;
     border-radius: var(--radius-lg);
     flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
     width: 100%;
+    box-sizing: border-box;
+  }
+
+  .tabs-nav-bar::-webkit-scrollbar {
+    display: none;
   }
 
   .tab-item-btn {
-    padding: 7px 12px;
-    font-size: 12px;
+    padding: 6px 11px;
+    font-size: 11.5px;
     flex-shrink: 0;
+    white-space: nowrap;
+    gap: 5px;
   }
 
   .future-module-banner {

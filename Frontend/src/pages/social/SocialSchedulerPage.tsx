@@ -727,9 +727,9 @@ export const SocialSchedulerPage: React.FC = () => {
   return (
     <div className="dashboard-page-container">
       {/* Page Header (Compact & Executive) */}
-      <div className="dashboard-header" style={{ marginBottom: '-6px' }}>
+      <div className="dashboard-header">
         <div className="dashboard-title-group">
-          <h1 style={{ fontSize: '20px', display: 'flex', alignItems: 'center', gap: '8px', margin: 0 }}>
+          <h1 className="social-page-title" style={{ fontSize: '20px', display: 'flex', alignItems: 'center', gap: '8px', margin: 0 }}>
             <Share2 size={22} color="#6E56CF" />
             Social Content Command Center
           </h1>
@@ -754,7 +754,7 @@ export const SocialSchedulerPage: React.FC = () => {
       </div>
 
       {/* Top Level Navigation Tabs */}
-      <div className="tabs-nav-bar" style={{ marginBottom: '-4px' }}>
+      <div className="tabs-nav-bar social-scheduler-tabs">
         <button
           className={`tab-item-btn ${activeTab === 'calendar' ? 'active' : ''}`}
           onClick={() => setActiveTab('calendar')}
@@ -769,7 +769,8 @@ export const SocialSchedulerPage: React.FC = () => {
           onClick={() => setActiveTab('queue')}
         >
           <Clock size={14} />
-          <span>Publishing Queue</span>
+          <span className="tab-text-full">Publishing Queue</span>
+          <span className="tab-text-short">Queue</span>
           <span className="tab-counter-badge">{queuedPosts.length}</span>
         </button>
 

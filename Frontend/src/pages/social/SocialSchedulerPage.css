@@ -435,37 +435,302 @@
   gap: 4px;
 }
 
-/* Responsive Overrides for Tablet and Mobile */
+/* Responsive Overrides for Tablet and Mobile — Strict 7 Days Visible with Zero Horizontal Clipping */
 @media (max-width: 768px) {
   .calendar-grid-wrapper {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .calendar-grid-container {
-    min-width: 640px;
+    min-width: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
-  .calendar-day-cell {
-    min-height: 75px;
-  }
-
-  .calendar-month-title {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .calendar-grid-container {
-    min-width: 580px;
+  .calendar-weekday-row {
+    display: grid !important;
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .calendar-weekday-cell {
     font-size: 10px;
     padding: 6px 2px;
+    text-align: center;
+  }
+
+  .calendar-days-grid {
+    display: grid !important;
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .calendar-day-cell {
+    min-height: 60px;
+    max-height: none;
+    height: auto;
+    min-width: 0 !important;
+    width: 100% !important;
+    padding: 4px 3px;
+    box-sizing: border-box;
+  }
+
+  .calendar-month-title {
+    font-size: 16px;
+    min-width: auto;
   }
 
   .social-calendar-toolbar {
     padding: 10px 12px;
+    gap: 10px;
+    flex-direction: column;
+    align-items: stretch;
   }
+
+  .calendar-nav-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .calendar-filters-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    width: 100%;
+    padding-bottom: 2px;
+  }
+
+  .calendar-filters-group::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-label {
+    flex-shrink: 0;
+    font-size: 10.5px;
+  }
+
+  .channel-filter-btn {
+    flex-shrink: 0;
+    padding: 4px 8px;
+    font-size: 10.5px;
+    white-space: nowrap;
+  }
+
+  .calendar-legend-bar {
+    padding: 8px 10px;
+    gap: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .calendar-legend-items {
+    gap: 8px;
+    row-gap: 4px;
+    font-size: 10px;
+  }
+
+  .calendar-legend-item {
+    font-size: 10px;
+    gap: 4px;
+  }
+
+  .calendar-legend-hint {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-weekday-cell {
+    font-size: 9px;
+    padding: 5px 1px;
+    letter-spacing: 0;
+  }
+
+  .calendar-day-cell {
+    min-height: 54px;
+    padding: 3px 2px;
+  }
+
+  .day-cell-top {
+    min-height: 16px;
+    margin-bottom: 2px;
+  }
+
+  .day-number-badge {
+    font-size: 10px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .day-count-badge {
+    font-size: 8px;
+    padding: 1px 3px;
+  }
+
+  .day-quick-add-btn {
+    display: none !important;
+  }
+
+  .calendar-event-pill {
+    padding: 2px 2px;
+    font-size: 8px;
+    gap: 2px;
+    border-radius: 3px;
+  }
+
+  .event-pill-time {
+    font-size: 8px;
+    font-weight: 800;
+  }
+
+  .event-pill-title {
+    font-size: 8px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .calendar-month-title {
+    font-size: 14.5px;
+  }
+
+  .calendar-stat-pill {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .tab-text-full {
+    display: none !important;
+  }
+
+  .tab-text-short {
+    display: inline !important;
+  }
+
+  /* Segmented 4-Column Tabs Grid on Mobile — Zero Clipping, All 4 Tabs Fit 100% */
+  .social-scheduler-tabs {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 4px !important;
+    padding: 4px !important;
+    margin: 6px 0 14px 0 !important;
+    border-radius: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0 !important;
+  }
+
+  .social-scheduler-tabs .tab-item-btn {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 7px 2px !important;
+    font-size: 11px !important;
+    gap: 4px !important;
+    justify-content: center !important;
+    text-align: center !important;
+    border-radius: 7px !important;
+    box-sizing: border-box !important;
+  }
+
+  .social-scheduler-tabs .tab-item-btn svg {
+    width: 12px !important;
+    height: 12px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .social-scheduler-tabs .tab-counter-badge {
+    font-size: 9px !important;
+    padding: 1px 4px !important;
+    border-radius: 8px !important;
+    line-height: 1.1 !important;
+  }
+}
+
+.tab-text-short {
+  display: none;
+}
+
+@media (max-width: 390px) {
+  .social-scheduler-tabs .tab-item-btn {
+    font-size: 10px !important;
+    padding: 6px 1px !important;
+  }
+
+  .social-scheduler-tabs .tab-item-btn svg {
+    display: none !important;
+  }
+
+  .social-page-title {
+    font-size: 17px !important;
+  }
+}
+
+/* Base Social Scheduler Tabs Container */
+.social-scheduler-tabs {
+  margin: 6px 0 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.social-scheduler-tabs .tab-item-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748B;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.social-scheduler-tabs .tab-item-btn:hover {
+  background: #F8FAFC;
+  color: #1E293B;
+}
+
+.social-scheduler-tabs .tab-item-btn.active {
+  background: #6E56CF !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 6px rgba(110, 86, 207, 0.35) !important;
+}
+
+.social-scheduler-tabs .tab-item-btn.active .tab-counter-badge {
+  background: rgba(255, 255, 255, 0.25) !important;
+  color: #FFFFFF !important;
+}
+
+.social-scheduler-tabs .tab-counter-badge {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: #EDE9FE;
+  color: #6E56CF;
 }

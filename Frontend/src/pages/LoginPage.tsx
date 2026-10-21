@@ -136,7 +136,18 @@ export const LoginPage: React.FC = () => {
       <div className="ambient-aurora-accent" aria-hidden="true" />
 
       {/* Top Global Bar matching Home Page */}
-      <header className="energy-auth-topbar" style={{ justifyContent: 'flex-end' }}>
+      <header className="energy-auth-topbar">
+        <NavLink
+          to="/"
+          className="energy-topbar-brand"
+          title="Zunme AI"
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}
+        >
+          <img src="/zunme_icon.png" alt="Zunme AI" style={{ height: '26px', width: 'auto', display: 'block' }} />
+          <span style={{ fontWeight: 800, fontSize: '15px', color: '#111625', letterSpacing: '-0.02em' }}>
+            Zunme AI
+          </span>
+        </NavLink>
 
         <div className="energy-topbar-meta" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <NavLink
