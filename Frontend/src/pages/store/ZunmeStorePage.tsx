@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { NavLink, useParams, useNavigate } from 'react-router-dom';
 import {
   ShoppingBag,
@@ -293,26 +293,37 @@ export const ZunmeStorePage: React.FC = () => {
 
   // Normalize route param to Category
   const categoryMap: Record<string, StoreCategoryType> = {
+    'ai content': 'AI Content',
     'ai-content': 'AI Content',
     'animation': 'Animation',
     'cartoon': 'Cartoon',
+    'images / photos': 'Images / Photos',
     'images-photos': 'Images / Photos',
     'images': 'Images / Photos',
+    'videos / ai videos': 'Videos / AI Videos',
     'videos': 'Videos / AI Videos',
     'ai-videos': 'Videos / AI Videos',
+    'ai builder': 'AI Builder',
     'ai-builder': 'AI Builder',
     'builder': 'AI Builder'
   };
 
-  const initialCat: StoreCategoryType = routeCategory && categoryMap[routeCategory.toLowerCase()]
-    ? categoryMap[routeCategory.toLowerCase()]
-    : 'All';
+  const getCategoryFromRoute = (param?: string): StoreCategoryType => {
+    if (!param) return 'All';
+    const decoded = decodeURIComponent(param).toLowerCase().trim();
+    return categoryMap[decoded] || 'All';
+  };
 
-  const [selectedCategory, setSelectedCategory] = useState<StoreCategoryType>(initialCat);
+  const [selectedCategory, setSelectedCategory] = useState<StoreCategoryType>(() => getCategoryFromRoute(routeCategory));
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'featured' | 'rating' | 'downloads' | 'price-low' | 'price-high'>('featured');
   const [filterPrice, setFilterPrice] = useState<'all' | 'free' | 'paid'>('all');
   const [activeItemModal, setActiveItemModal] = useState<StoreItem | null>(null);
+
+  // Sync selectedCategory when user clicks sidebar category links
+  useEffect(() => {
+    setSelectedCategory(getCategoryFromRoute(routeCategory));
+  }, [routeCategory]);
 
   const categories: { label: StoreCategoryType; icon: React.ReactNode; count: number }[] = [
     { label: 'All', icon: <Layers size={15} />, count: SAMPLE_STORE_ITEMS.length },

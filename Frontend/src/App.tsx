@@ -74,6 +74,11 @@ export const App: React.FC = () => {
           {/* Public Landing Page (PROTECTED) */}
           <Route path="/" element={<LandingPage />} />
 
+          {/* Universal Search Route (Dev 1 Google Search Bar Destination) */}
+          <Route path="/search" element={<AppShell />}>
+            <Route index element={<SearchPage />} />
+          </Route>
+
           {/* Authentication Suite */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
