@@ -43,7 +43,6 @@ import {
   Copy
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
-import { EcosystemAppsLauncher } from '../../components/layout/EcosystemAppsLauncher';
 import './ZBoxPage.css';
 
 interface ZBoxMessage {
@@ -490,23 +489,7 @@ export const ZBoxPage: React.FC = () => {
           </div>
 
           {/* Right Actions */}
-          <div className="zbox-public-nav-actions">
-            <EcosystemAppsLauncher />
-            {user ? (
-              <NavLink to="/user/home" className="btn btn-outline btn-sm" style={{ fontWeight: 700 }}>
-                Workspace Dashboard
-              </NavLink>
-            ) : (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <NavLink to="/login" className="btn btn-ghost btn-sm" style={{ fontWeight: 700 }}>
-                  Sign In
-                </NavLink>
-                <NavLink to="/register" className="btn btn-primary btn-sm" style={{ fontWeight: 800 }}>
-                  Create Account
-                </NavLink>
-              </div>
-            )}
-          </div>
+          <div className="zbox-public-nav-actions" />
         </div>
       </header>
 

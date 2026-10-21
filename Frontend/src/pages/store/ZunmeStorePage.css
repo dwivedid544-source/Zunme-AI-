@@ -451,3 +451,132 @@
   }
 }
 
+/* ==========================================================================
+   PUBLIC STORE WRAPPER & STANDALONE TOPBAR
+   ========================================================================== */
+.public-store-wrapper {
+  min-height: 100vh;
+  background-color: var(--color-bg-base, #FAFBFC);
+  color: var(--color-text-primary, #0F172A);
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.public-store-topbar {
+  height: 68px;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 10px rgba(30, 20, 60, 0.02);
+}
+
+.public-store-topbar-inner {
+  height: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.public-store-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.public-store-brand-link {
+  display: flex;
+  align-items: center;
+}
+
+.public-store-brand-logo {
+  height: 32px;
+  width: auto;
+}
+
+.public-store-brand-divider {
+  width: 1px;
+  height: 20px;
+  background: #E2E8F0;
+}
+
+.public-store-brand-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #6E56CF;
+  background: rgba(110, 86, 207, 0.08);
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(110, 86, 207, 0.2);
+}
+
+.public-store-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.public-store-back-btn,
+.public-store-merchant-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #475569;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  transition: all 0.2s ease;
+}
+
+.public-store-back-btn:hover,
+.public-store-merchant-link:hover {
+  background: #E2E8F0;
+  color: #1E293B;
+  transform: translateY(-1px);
+}
+
+.public-store-signin-btn {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1A73E8;
+  border: 1.5px solid #2563EB;
+  background: #FFFFFF;
+  padding: 6px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 4px rgba(37, 99, 235, 0.08);
+}
+
+.public-store-signin-btn:hover {
+  background: #EFF6FF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}
+
+.public-store-main-stage {
+  flex: 1;
+  position: relative;
+  z-index: 2;
+  padding: 20px 0 40px;
+}
+
+.public-store-footer {
+  margin-top: auto;
+}
+

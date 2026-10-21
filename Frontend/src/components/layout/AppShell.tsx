@@ -83,15 +83,12 @@ export const AppShell: React.FC = () => {
     navigate('/login', { replace: true });
   };
 
-  // Allow public access to store, shop, merchant zone, ads platform, zbox, and search
+  // Allow public access to store, shop, and merchant zone
   const isPublicRoute =
     location.pathname.startsWith('/store') ||
     location.pathname.startsWith('/shop') ||
     location.pathname.startsWith('/merchant-zone') ||
-    location.pathname.startsWith('/merchant') ||
-    location.pathname.startsWith('/ads') ||
-    location.pathname.startsWith('/zbox') ||
-    location.pathname.startsWith('/search');
+    location.pathname.startsWith('/merchant');
 
   if (!user && !isPublicRoute) {
     return <Navigate to="/login" replace />;

@@ -70,6 +70,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 220px;
 }
 
 /* Public Footer */
@@ -144,6 +145,7 @@
   padding: 4px;
   border-radius: var(--radius-md);
   gap: 4px;
+  margin: 0 auto;
 }
 
 .zbox-mode-btn {
