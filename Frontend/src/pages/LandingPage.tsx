@@ -306,7 +306,7 @@ export const LandingPage: React.FC = () => {
         </div>
 
         {/* Central Google-Style Rounded Search Bar (Doc Image 5) */}
-        <div className="google-search-container">
+        <div className="google-search-container" style={{ marginBottom: '26px' }}>
           <form onSubmit={handleGoogleSearchSubmit} className="google-search-bar">
             <div className="google-search-lens">
               <Search size={20} />
@@ -350,7 +350,7 @@ export const LandingPage: React.FC = () => {
         </div>
 
         {/* Caption directly under Search Bar */}
-        <div className="google-hero-caption">
+        <div className="google-hero-caption" style={{ marginTop: '0px', marginBottom: '18px' }}>
           <Sparkles size={15} />
           <span>Make AI Your Best Friend</span>
         </div>
@@ -366,7 +366,7 @@ export const LandingPage: React.FC = () => {
               <Search size={14} className="text-blue" />
               <span>Web Search</span>
             </NavLink>
-            <NavLink to="/studio" className="google-capability-pill">
+            <NavLink to={user ? "/user/builders" : "/login"} className="google-capability-pill">
               <PenTool size={14} className="text-indigo" />
               <span>AI Content Builders</span>
             </NavLink>

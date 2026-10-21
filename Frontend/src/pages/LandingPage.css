@@ -5164,7 +5164,7 @@
 .google-search-container {
   width: 100%;
   max-width: 660px;
-  margin: 0 auto 10px;
+  margin: 0 auto 26px !important;
   position: relative;
 }
 
@@ -5297,14 +5297,15 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 800;
   color: var(--color-primary);
   background: rgba(110, 86, 207, 0.08);
   border: 1px solid rgba(110, 86, 207, 0.2);
-  padding: 4px 14px;
+  padding: 5px 18px;
   border-radius: 999px;
-  margin-bottom: 12px;
+  margin-top: 0 !important;
+  margin-bottom: 18px !important;
 }
 
 /* 6 Capability Launcher Pills */
@@ -5630,7 +5631,7 @@
 
   .google-search-container {
     max-width: 100%;
-    margin-bottom: 16px;
+    margin: 0 auto 20px !important;
   }
 
   .google-search-bar {
@@ -5645,7 +5646,8 @@
   .google-hero-caption {
     font-size: 13px;
     padding: 5px 14px;
-    margin-bottom: 20px;
+    margin-top: 0 !important;
+    margin-bottom: 18px !important;
   }
 
   .google-capabilities-group {
@@ -5809,10 +5811,15 @@
     height: 17px;
   }
 
+  .google-search-container {
+    margin: 0 auto 18px !important;
+  }
+
   .google-hero-caption {
     font-size: 12px;
     padding: 4px 12px;
-    margin-bottom: 16px;
+    margin-top: 0 !important;
+    margin-bottom: 16px !important;
   }
 
   .google-pills-row {
@@ -5923,400 +5930,5 @@
   .google-capability-pill {
     padding: 5px 9px;
     font-size: 10.5px;
-  }
-}
-
-
-
-
-
-
-/* ==========================================================================
-   DEVELOPER 1: GOOGLE-STYLE MINIMAL LOOK & SPEED OPTIMIZATION
-   ========================================================================== */
-
-/* Layout Container for Minimal Page */
-.landing-page {
-  min-height: 100vh !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
-}
-
-/* 1. Google-Style Minimal Top Bar */
-.google-header {
-  background: rgba(255, 255, 255, 0.95) !important;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03) !important;
-  height: 62px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(12px);
-}
-
-.google-header-container {
-  height: 100%;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  padding: 0 24px !important;
-}
-
-.google-nav-left {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-}
-
-.google-nav-link {
-  color: #3c4043 !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  text-decoration: none !important;
-  padding: 6px 4px;
-  transition: color 0.15s ease;
-  letter-spacing: 0.01em;
-}
-
-.google-nav-link:hover {
-  color: #1a73e8 !important;
-  text-decoration: underline !important;
-}
-
-.google-nav-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.google-icon-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #5f6368 !important;
-  text-decoration: none !important;
-  transition: all 0.15s ease;
-  background: transparent;
-}
-
-.google-icon-btn:hover {
-  background: rgba(60, 64, 67, 0.08) !important;
-  color: #1a73e8 !important;
-  transform: translateY(-1px);
-}
-
-.google-signin-btn {
-  background: #1a73e8 !important;
-  color: #ffffff !important;
-  font-size: 14px !important;
-  font-weight: 600 !important;
-  padding: 8px 22px !important;
-  border-radius: 4px !important;
-  text-decoration: none !important;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3) !important;
-  transition: all 0.15s ease !important;
-  margin-left: 6px;
-  letter-spacing: 0.01em;
-}
-
-.google-signin-btn:hover {
-  background: #1967d2 !important;
-  box-shadow: 0 2px 6px rgba(26, 115, 232, 0.35) !important;
-}
-
-/* 2. Hero Section: Central Google Search Bar */
-.google-hero-section {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 48px 20px 36px 20px;
-  text-align: center;
-}
-
-.google-hero-container {
-  max-width: 860px !important;
-  margin: 0 auto !important;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.google-brand-block {
-  margin-bottom: 24px;
-}
-
-.google-brand-logo-row {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  margin-bottom: 12px;
-}
-
-.google-brand-logo-img {
-  height: 44px;
-  width: auto;
-  object-fit: contain;
-}
-
-.google-brand-title {
-  font-size: 48px;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  background: linear-gradient(135deg, #1E1238 0%, #4A2368 40%, #7C3AED 75%, #0284C7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1.1;
-  font-family: var(--font-sans);
-}
-
-.google-hero-tagline {
-  font-size: 20px;
-  font-weight: 700;
-  color: #202124;
-  margin: 0 0 8px 0;
-  letter-spacing: -0.01em;
-}
-
-.google-hero-subtext {
-  font-size: 14.5px;
-  color: #5f6368;
-  max-width: 620px;
-  margin: 0 auto;
-  line-height: 1.55;
-}
-
-/* Central Rounded Search Bar */
-.google-search-container {
-  width: 100%;
-  max-width: 660px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.google-search-bar {
-  width: 100%;
-  height: 50px;
-  background: #ffffff;
-  border: 1px solid #dfe1e5;
-  border-radius: 26px;
-  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.12);
-  display: flex;
-  align-items: center;
-  padding: 0 14px 0 18px;
-  gap: 12px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.google-search-bar:hover,
-.google-search-bar:focus-within {
-  box-shadow: 0 2px 10px rgba(32, 33, 36, 0.22);
-  border-color: rgba(223, 225, 229, 0);
-}
-
-.google-search-bar.listening {
-  border-color: #EC4899;
-  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.2);
-}
-
-.google-search-lens-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #9aa0a6;
-}
-
-.google-search-input {
-  flex: 1;
-  height: 100%;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 16px;
-  color: #202124;
-  font-family: inherit;
-}
-
-.google-search-clear {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #70757a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px;
-  border-radius: 50%;
-  transition: background 0.15s ease;
-}
-
-.google-search-clear:hover {
-  background: #f1f3f4;
-  color: #202124;
-}
-
-.google-mic-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #4285f4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  border-radius: 50%;
-  position: relative;
-  transition: all 0.2s ease;
-}
-
-.google-mic-btn:hover {
-  background: #f1f3f4;
-  color: #ea4335;
-  transform: scale(1.08);
-}
-
-.google-mic-btn.active-listening {
-  color: #ef4444;
-  animation: pulse 1s infinite;
-}
-
-.google-search-caption {
-  margin-top: 14px;
-  font-size: 14.5px;
-  font-weight: 700;
-  color: #1a73e8;
-  letter-spacing: 0.02em;
-}
-
-/* 3. Task 3: 6 Quick Workspace Launchers */
-.google-launchers-section {
-  margin-top: 26px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 820px;
-}
-
-.google-launchers-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 14px;
-}
-
-.google-launcher-btn {
-  background-color: #f8f9fa !important;
-  border: 1px solid #dadce0 !important;
-  border-radius: 20px !important;
-  color: #3c4043 !important;
-  font-size: 13.5px !important;
-  font-weight: 600 !important;
-  padding: 8px 18px !important;
-  text-decoration: none !important;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.15s ease !important;
-  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.06);
-}
-
-.google-launcher-btn:hover {
-  background-color: #f1f3f4 !important;
-  border-color: #1a73e8 !important;
-  color: #1a73e8 !important;
-  box-shadow: 0 2px 6px rgba(26, 115, 232, 0.18) !important;
-  transform: translateY(-1px);
-}
-
-.google-launchers-caption {
-  font-size: 13px;
-  color: #70757a;
-  max-width: 580px;
-  text-align: center;
-  margin: 0;
-  line-height: 1.5;
-}
-
-/* 4. Task 4: Google-Style Simple Speed-Optimized Footer */
-.google-style-footer {
-  background: #f2f2f2 !important;
-  border-top: 1px solid #dadce0 !important;
-  padding: 12px 28px !important;
-  width: 100% !important;
-  margin-top: auto !important;
-}
-
-.google-footer-inner {
-  max-width: 1480px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.google-footer-left,
-.google-footer-right {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.google-footer-link {
-  color: #70757a !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  text-decoration: none !important;
-  transition: color 0.15s ease;
-}
-
-.google-footer-link:hover {
-  color: #202124 !important;
-  text-decoration: underline !important;
-}
-
-.google-footer-sep {
-  color: #dadce0;
-  font-size: 12px;
-}
-
-/* Mobile Responsive */
-@media (max-width: 680px) {
-  .google-brand-title {
-    font-size: 34px;
-    letter-spacing: 0.18em;
-  }
-  .google-hero-tagline {
-    font-size: 17px;
-  }
-  .google-search-bar {
-    height: 46px;
-    padding: 0 12px;
-  }
-  .google-launcher-btn {
-    font-size: 12.5px !important;
-    padding: 7px 14px !important;
-  }
-  .google-footer-inner {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 10px;
   }
 }
