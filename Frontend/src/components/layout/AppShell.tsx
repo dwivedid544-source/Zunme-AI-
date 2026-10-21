@@ -41,7 +41,9 @@ import {
   Image as ImageIcon,
   Video,
   Bot,
-  Globe
+  Globe,
+  FileSpreadsheet,
+  Code
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { NotificationBell } from '../common/NotificationBell';
@@ -730,6 +732,42 @@ export const AppShell: React.FC = () => {
               >
                 <Bookmark size={17} />
                 <span>My Library</span>
+              </NavLink>
+
+              <NavLink
+                to="/user/spreadsheets"
+                className={({ isActive }) => `sidebar-nav-item ${isActive || location.pathname === '/app/spreadsheets' || location.pathname === '/spreadsheets' ? 'active' : ''}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <FileSpreadsheet size={17} />
+                <span>Data & Spreadsheets</span>
+              </NavLink>
+
+              <NavLink
+                to="/user/agents"
+                className={({ isActive }) => `sidebar-nav-item ${isActive || location.pathname === '/app/agents' || location.pathname === '/agents' ? 'active' : ''}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <Bot size={17} />
+                <span>Custom AI Agents</span>
+              </NavLink>
+
+              <NavLink
+                to="/user/coding"
+                className={({ isActive }) => `sidebar-nav-item ${isActive || location.pathname === '/app/coding' || location.pathname === '/coding' ? 'active' : ''}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <Code size={17} />
+                <span>Coding &amp; Git Studio</span>
+              </NavLink>
+
+              <NavLink
+                to="/user/animation"
+                className={({ isActive }) => `sidebar-nav-item ${isActive || location.pathname === '/app/animation' || location.pathname === '/animation' ? 'active' : ''}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <Film size={17} />
+                <span>Animation &amp; Characters</span>
               </NavLink>
 
               <NavLink

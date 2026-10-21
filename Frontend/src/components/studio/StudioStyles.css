@@ -614,3 +614,151 @@
   }
 }
 
+/* ==========================================================================
+   3. AI ANIMATION & CHARACTERS STUDIO STYLES (CLIENT SPECIFICATION)
+   ========================================================================== */
+.animation-studio-layout {
+  display: grid;
+  grid-template-columns: 390px 1fr;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+  .animation-studio-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.character-preview-stage {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.character-viewport-box {
+  background: radial-gradient(circle at center, #F8FAFC 0%, #EDE9FE 100%);
+  border: 1px solid #DDD6FE;
+  border-radius: 16px;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.character-canvas-glow {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.animated-character-entity {
+  width: 200px;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.animated-character-entity.playing {
+  animation: floatCharacter 3s ease-in-out infinite alternate;
+}
+
+@keyframes floatCharacter {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1.5deg); }
+  100% { transform: translateY(4px) rotate(-1.5deg); }
+}
+
+.character-avatar-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 4px solid #FFFFFF;
+  box-shadow: 0 8px 24px rgba(109, 40, 217, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52px;
+  background: #FFFFFF;
+}
+
+.character-playback-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 10px 16px;
+}
+
+.motion-scrubber-track {
+  flex: 1;
+  height: 6px;
+  background: #E2E8F0;
+  border-radius: 3px;
+  margin: 0 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.motion-scrubber-fill {
+  height: 100%;
+  background: #7C3AED;
+  border-radius: 3px;
+  transition: width 0.1s linear;
+}
+
+.character-archetype-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 8px;
+}
+
+.archetype-btn {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.archetype-btn:hover,
+.archetype-btn.active {
+  border-color: #7C3AED;
+  background: #F5F3FF;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.15);
+}
+
+.archetype-emoji {
+  font-size: 22px;
+}
+
+.archetype-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #334155;
+}
+
+

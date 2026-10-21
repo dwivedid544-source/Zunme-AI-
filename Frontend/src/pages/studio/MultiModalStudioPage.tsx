@@ -1,18 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Sparkles,
   Image as ImageIcon,
   Video,
-  FileEdit,
-  ArrowRight
+  Film
 } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 import { ImageStudio } from '../../components/studio/ImageStudio';
 import { VideoScriptStudio } from '../../components/studio/VideoScriptStudio';
+import { AnimationCharacterStudio } from '../../components/studio/AnimationCharacterStudio';
 import '../../styles/dashboard.css';
 import '../../components/studio/StudioStyles.css';
 
-export const MultiModalStudioPage: React.FC = () => {
-  const [activeEngine, setActiveEngine] = useState<'image' | 'video'>('image');
+interface MultiModalStudioPageProps {
+  defaultEngine?: 'image' | 'video' | 'animation';
+}
+
+export const MultiModalStudioPage: React.FC<MultiModalStudioPageProps> = ({ defaultEngine = 'image' }) => {
+  const [searchParams] = useSearchParams();
+  const urlTab = searchParams.get('tab') as 'image' | 'video' | 'animation' | null;
+
+  const [activeEngine, setActiveEngine] = useState<'image' | 'video' | 'animation'>(
+    urlTab && ['image', 'video', 'animation'].includes(urlTab)
+      ? urlTab
+      : defaultEngine
+  );
+
+  useEffect(() => {
+    const tabParam = searchParams.get('tab') as 'image' | 'video' | 'animation' | null;
+    if (tabParam && ['image', 'video', 'animation'].includes(tabParam)) {
+      setActiveEngine(tabParam);
+    }
+  }, [searchParams]);
 
   return (
     <div className="dashboard-page-container">
@@ -24,7 +43,7 @@ export const MultiModalStudioPage: React.FC = () => {
             Multi-Modal Studio
           </h1>
           <p className="dashboard-subtitle">
-            Generate high-fidelity visual concepts with the AI Image Diffusion Engine and structured scene-by-scene video scripts with the Video Script Generator.
+            Generate high-fidelity visual concepts, structured scene-by-scene video scripts, and custom AI mascot animations with turnaround motion previews.
           </p>
         </div>
       </div>
@@ -46,10 +65,20 @@ export const MultiModalStudioPage: React.FC = () => {
           <Video size={15} />
           <span>AI Video Script Engine</span>
         </button>
+
+        <button
+          className={`studio-nav-pill ${activeEngine === 'animation' ? 'active' : ''}`}
+          onClick={() => setActiveEngine('animation')}
+        >
+          <Film size={15} />
+          <span>AI Animation &amp; Characters</span>
+        </button>
       </div>
 
       {/* Engine View */}
-      {activeEngine === 'image' ? <ImageStudio /> : <VideoScriptStudio />}
+      {activeEngine === 'image' && <ImageStudio />}
+      {activeEngine === 'video' && <VideoScriptStudio />}
+      {activeEngine === 'animation' && <AnimationCharacterStudio />}
     </div>
   );
 };

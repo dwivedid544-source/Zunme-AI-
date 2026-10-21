@@ -19,7 +19,9 @@ import {
   ExternalLink,
   Mic,
   Volume2,
-  X
+  X,
+  Image as ImageIcon,
+  Upload
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import './ChatPage.css';
@@ -42,6 +44,15 @@ export const ChatPage: React.FC = () => {
   const [isListening, setIsListening] = useState<boolean>(false);
   const [voiceTranscript, setVoiceTranscript] = useState<string>('Explain the competitive advantages of Zunme AI compared to traditional LLMs in 2026.');
   const [deepResearchActive, setDeepResearchActive] = useState<boolean>(false);
+
+  // Multimodal Image & Screenshot Attachment State
+  const [attachedImage, setAttachedImage] = useState<{
+    name: string;
+    url: string;
+    sizeKb: number;
+  } | null>(null);
+  const imageInputRef = useRef<HTMLInputElement>(null);
+
   const scrollEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const hasSentInitialPrompt = useRef(false);
@@ -63,13 +74,58 @@ export const ChatPage: React.FC = () => {
     scrollEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [activeMessages, isAiResponding]);
 
+  const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith('image/')) {
+      showToast('Please select a valid image file (PNG, JPG, WebP)', 'error');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setAttachedImage({
+        name: file.name,
+        url: event.target?.result as string,
+        sizeKb: Math.round(file.size / 1024)
+      });
+      showToast(`Attached "${file.name}" for Multimodal Vision inspection`, 'info');
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleSelectSampleScreenshot = (sampleType: 'dashboard' | 'mockup') => {
+    if (sampleType === 'dashboard') {
+      setAttachedImage({
+        name: 'analytics_conversion_dashboard.png',
+        url: '/assets/client-icons/documents_icon.png',
+        sizeKb: 148
+      });
+      setInputMessage('Analyze this analytics dashboard screenshot. Identify key conversion drop-offs, visual hierarchy, and metric anomalies.');
+    } else {
+      setAttachedImage({
+        name: 'landing_page_ui_mockup.png',
+        url: '/assets/client-icons/interactive_content_icon.png',
+        sizeKb: 216
+      });
+      setInputMessage('Audit this landing page UI mockup. Evaluate visual contrast, CTA placement, and accessibility.');
+    }
+    showToast('Loaded sample screenshot for Multimodal AI analysis', 'info');
+  };
+
   const handleSend = () => {
-    if (!inputMessage.trim() || isAiResponding) return;
-    const finalMsg = deepResearchActive
-      ? `[DEEP RESEARCH SYNTHESIS: Multi-Step Verified Data Gathering]\n${inputMessage.trim()}`
-      : inputMessage.trim();
+    if ((!inputMessage.trim() && !attachedImage) || isAiResponding) return;
+
+    let finalMsg = inputMessage.trim();
+    if (attachedImage) {
+      finalMsg = `[MULTIMODAL IMAGE ATTACHMENT: ${attachedImage.name} (${attachedImage.sizeKb} KB)]\n${finalMsg || 'Please analyze this uploaded visual asset and provide comprehensive insights.'}`;
+    }
+    if (deepResearchActive) {
+      finalMsg = `[DEEP RESEARCH SYNTHESIS: Multi-Step Verified Data Gathering]\n${finalMsg}`;
+    }
+
     sendMessage(finalMsg);
     setInputMessage('');
+    setAttachedImage(null);
     if (textareaRef.current) {
       textareaRef.current.style.height = '48px';
     }
@@ -224,6 +280,29 @@ export const ChatPage: React.FC = () => {
                   <span>Practical trade-offs and implementation cost</span>
                 </div>
               </div>
+
+              {/* Sample Screenshots for Multimodal Vision Testing */}
+              <div className="sample-screenshots-container">
+                <span style={{ fontSize: '11.5px', color: '#64748B', fontWeight: '700' }}>
+                  📸 Multimodal Vision Analysis:
+                </span>
+                <button
+                  type="button"
+                  className="sample-screenshot-chip"
+                  onClick={() => handleSelectSampleScreenshot('dashboard')}
+                >
+                  <ImageIcon size={13} color="#635BFF" />
+                  <span>Analyze Analytics Dashboard Screenshot</span>
+                </button>
+                <button
+                  type="button"
+                  className="sample-screenshot-chip"
+                  onClick={() => handleSelectSampleScreenshot('mockup')}
+                >
+                  <ImageIcon size={13} color="#059669" />
+                  <span>Audit Landing Page UI Mockup</span>
+                </button>
+              </div>
             </div>
           ) : (
             activeMessages.map((msg) => (
@@ -241,7 +320,17 @@ export const ChatPage: React.FC = () => {
 
                 <div className="chat-bubble-content">
                   {msg.role === 'user' ? (
-                    <div className="user-bubble">{msg.content}</div>
+                    <div className="user-bubble">
+                      {msg.content.includes('[MULTIMODAL IMAGE ATTACHMENT:') && (
+                        <div className="user-image-attachment-pill">
+                          <ImageIcon size={13} />
+                          <span>{msg.content.match(/\[MULTIMODAL IMAGE ATTACHMENT: ([^\]]+)\]/)?.[1] || 'Attached Image'}</span>
+                        </div>
+                      )}
+                      <div>
+                        {msg.content.replace(/\[MULTIMODAL IMAGE ATTACHMENT: [^\]]+\]\n?/, '')}
+                      </div>
+                    </div>
                   ) : (
                     <>
                       <div className="ai-bubble">
@@ -359,10 +448,30 @@ export const ChatPage: React.FC = () => {
         )}
 
         <div className="chat-input-box">
+          {attachedImage && (
+            <div className="image-attachment-preview-bar">
+              <div className="image-preview-meta">
+                <img src={attachedImage.url} alt="Attached asset" className="image-preview-thumb" />
+                <div className="image-preview-info">
+                  <span className="image-preview-name">{attachedImage.name}</span>
+                  <span className="image-preview-sub">🖼️ Multimodal Vision Inspection Active ({attachedImage.sizeKb} KB)</span>
+                </div>
+              </div>
+              <button
+                type="button"
+                className="image-remove-btn"
+                onClick={() => setAttachedImage(null)}
+                title="Remove image"
+              >
+                <X size={15} />
+              </button>
+            </div>
+          )}
+
           <textarea
             ref={textareaRef}
             className="chat-textarea"
-            placeholder="Ask anything or describe what you want to create... (Press Enter to send)"
+            placeholder="Ask anything, describe what to create, or attach a screenshot/image... (Press Enter to send)"
             value={inputMessage}
             onChange={(e) => {
               setInputMessage(e.target.value);
@@ -377,6 +486,34 @@ export const ChatPage: React.FC = () => {
 
           <div className="chat-input-actions">
             <div className="input-hints flex items-center gap-3">
+              <button
+                type="button"
+                className="btn-ghost btn-sm"
+                onClick={() => imageInputRef.current?.click()}
+                title="Upload Image or Screenshot for Multimodal Inspection"
+                style={{
+                  padding: '3px 8px',
+                  borderRadius: '6px',
+                  fontSize: '11.5px',
+                  fontWeight: '700',
+                  color: attachedImage ? '#635BFF' : '#4B5563',
+                  background: attachedImage ? 'rgba(99, 91, 255, 0.12)' : 'transparent',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px'
+                }}
+              >
+                <ImageIcon size={14} color="#635BFF" />
+                <span>Attach Image</span>
+              </button>
+              <input
+                ref={imageInputRef}
+                type="file"
+                accept="image/*"
+                style={{ display: 'none' }}
+                onChange={handleImageSelect}
+              />
+
               <button
                 type="button"
                 className={`btn-ghost btn-sm ${deepResearchActive ? 'active' : ''}`}
@@ -435,7 +572,7 @@ export const ChatPage: React.FC = () => {
               <button
                 className="btn btn-primary btn-sm"
                 onClick={handleSend}
-                disabled={!inputMessage.trim() || isAiResponding}
+                disabled={(!inputMessage.trim() && !attachedImage) || isAiResponding}
                 style={{ borderRadius: 'var(--radius-full)', padding: '6px 16px' }}
               >
                 <span>Send</span>
