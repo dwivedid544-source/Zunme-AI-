@@ -43,6 +43,10 @@ import { ZunmeAdsPage } from './pages/ads/ZunmeAdsPage';
 import { SocialSchedulerPage } from './pages/social/SocialSchedulerPage';
 import { ZunmeStorePage } from './pages/store/ZunmeStorePage';
 import { MerchantZonePage } from './pages/merchant/MerchantZonePage';
+import { DataSpreadsheetsPage } from './pages/data/DataSpreadsheetsPage';
+import { CustomAgentsPage } from './pages/agents/CustomAgentsPage';
+import { CodingDevStudioPage } from './pages/coding/CodingDevStudioPage';
+import { MultiModalStudioPage } from './pages/studio/MultiModalStudioPage';
 import { ZBoxPage } from './pages/zbox/ZBoxPage';
 import { AdOnboardingWizard } from './pages/ads/AdOnboardingWizard';
 import { AdFormatBuildersPage } from './pages/ads/AdFormatBuildersPage';
@@ -117,6 +121,14 @@ export const App: React.FC = () => {
             <Route path="usage" element={<UserUsagePlanPage />} />
             <Route path="settings" element={<SettingsPage />} />
             <Route path="support" element={<UserHelpSupportPage />} />
+            <Route path="spreadsheets" element={<DataSpreadsheetsPage />} />
+            <Route path="data-spreadsheets" element={<Navigate to="/user/spreadsheets" replace />} />
+            <Route path="agents" element={<CustomAgentsPage />} />
+            <Route path="custom-gpts" element={<Navigate to="/user/agents" replace />} />
+            <Route path="coding" element={<CodingDevStudioPage />} />
+            <Route path="codex" element={<Navigate to="/user/coding" replace />} />
+            <Route path="animation" element={<MultiModalStudioPage defaultEngine="animation" />} />
+            <Route path="multimodal" element={<MultiModalStudioPage />} />
           </Route>
 
           {/* Backward Compatibility: Redirect /app/* to /user/* */}
@@ -129,6 +141,11 @@ export const App: React.FC = () => {
           <Route path="/app/studio" element={<Navigate to="/user/builders" replace />} />
           <Route path="/app/warehouse" element={<Navigate to="/warehouse/dashboard" replace />} />
           <Route path="/app/library" element={<Navigate to="/user/library" replace />} />
+          <Route path="/app/spreadsheets" element={<Navigate to="/user/spreadsheets" replace />} />
+          <Route path="/app/agents" element={<Navigate to="/user/agents" replace />} />
+          <Route path="/app/coding" element={<Navigate to="/user/coding" replace />} />
+          <Route path="/app/animation" element={<Navigate to="/user/animation" replace />} />
+          <Route path="/app/multimodal" element={<Navigate to="/user/multimodal" replace />} />
           <Route path="/app/history" element={<Navigate to="/user/history" replace />} />
           <Route path="/app/usage" element={<Navigate to="/user/usage" replace />} />
           <Route path="/app/settings" element={<Navigate to="/user/settings" replace />} />
@@ -137,6 +154,11 @@ export const App: React.FC = () => {
           {/* Top-Level Quick Shortcuts */}
           <Route path="/chat" element={<Navigate to="/user/chat" replace />} />
           <Route path="/search" element={<Navigate to="/user/search" replace />} />
+          <Route path="/spreadsheets" element={<Navigate to="/user/spreadsheets" replace />} />
+          <Route path="/agents" element={<Navigate to="/user/agents" replace />} />
+          <Route path="/coding" element={<Navigate to="/user/coding" replace />} />
+          <Route path="/animation" element={<Navigate to="/user/animation" replace />} />
+          <Route path="/multimodal" element={<Navigate to="/user/multimodal" replace />} />
 
           {/* Specialist Workspaces (Under AppShell) */}
           <Route path="/warehouse" element={<AppShell />}>
