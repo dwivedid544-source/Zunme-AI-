@@ -9,6 +9,7 @@ import {
   Download,
   Eye,
   ArrowRight,
+  ArrowLeft,
   Store,
   Layers,
   Film,
@@ -357,9 +358,47 @@ export const ZunmeStorePage: React.FC = () => {
   };
 
   return (
-    <div className="store-page-container">
-      {/* Hero Banner */}
-      <div className="store-hero-banner">
+    <div className="public-store-wrapper">
+      {/* Background Atmosphere Layers */}
+      <div className="cosmic-grid-overlay" aria-hidden="true" />
+      <div className="ambient-aurora-top" aria-hidden="true" />
+      <div className="ambient-aurora-accent" aria-hidden="true" />
+
+      {/* Top Public Header */}
+      <header className="public-store-topbar">
+        <div className="public-store-topbar-inner">
+          <div className="public-store-brand-group">
+            <NavLink to="/" className="public-store-brand-link" title="Zunme AI Home">
+              <img src="/zunme_logo.png" alt="Zunme AI" className="public-store-brand-logo" />
+            </NavLink>
+            <div className="public-store-brand-divider" />
+            <div className="public-store-brand-tag">
+              <ShoppingBag size={14} style={{ color: '#6E56CF' }} />
+              <span>Zunme Digital Shop</span>
+            </div>
+          </div>
+
+          <div className="public-store-topbar-actions">
+            <NavLink to="/" className="public-store-back-btn">
+              <ArrowLeft size={15} />
+              <span>Back to Home</span>
+            </NavLink>
+            <NavLink to="/merchant-zone" className="public-store-merchant-link">
+              <Store size={15} />
+              <span>Merchant Zone</span>
+            </NavLink>
+            <NavLink to="/login" className="public-store-signin-btn">
+              Sign In
+            </NavLink>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Store Content Stage */}
+      <main className="public-store-main-stage">
+        <div className="store-page-container">
+          {/* Hero Banner */}
+          <div className="store-hero-banner">
         <div className="store-hero-content">
           <div className="store-hero-badge">
             <ShoppingBag size={13} />
@@ -725,6 +764,22 @@ export const ZunmeStorePage: React.FC = () => {
           </div>
         </div>
       )}
+        </div>
+      </main>
+
+      {/* Google-Style Public Footer */}
+      <footer className="google-style-footer public-store-footer">
+        <div className="google-footer-left">
+          <NavLink to="/ads" className="google-footer-link">Advertising</NavLink>
+          <NavLink to="/business" className="google-footer-link">Business</NavLink>
+          <NavLink to="/make-ai-work" className="google-footer-link">Make AI Work</NavLink>
+        </div>
+        <div className="google-footer-right">
+          <NavLink to="/privacy" className="google-footer-link">Privacy</NavLink>
+          <NavLink to="/settings" className="google-footer-link">Settings</NavLink>
+          <NavLink to="/terms" className="google-footer-link">Terms</NavLink>
+        </div>
+      </footer>
     </div>
   );
 };

@@ -25,6 +25,7 @@ import {
   Mic
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { InteractiveContentIcon, DocumentsLibraryIcon } from '../components/common/ClientDocIcons';
 import './LandingPage.css';
 
 export interface EcosystemProduct {
@@ -206,7 +207,7 @@ export const LandingPage: React.FC = () => {
               className="google-nav-icon-btn"
               title="Interactive Studio &amp; AI Tools"
             >
-              <img src="/assets/client-icons/interactive_content_icon.png" alt="Interactive Content" className="google-nav-icon-img" />
+              <InteractiveContentIcon size={34} />
             </NavLink>
 
             {/* 3. Documents / Pages Icon (Doc Image 3) -> /library */}
@@ -215,7 +216,7 @@ export const LandingPage: React.FC = () => {
               className="google-nav-icon-btn"
               title="Documents &amp; Personal Workspace Library"
             >
-              <img src="/assets/client-icons/documents_icon.png" alt="Documents" className="google-nav-icon-img" />
+              <DocumentsLibraryIcon size={34} />
             </NavLink>
 
             {/* 4. SIGN IN Button (Doc Image 4) */}

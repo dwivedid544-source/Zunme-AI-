@@ -19,6 +19,7 @@ import { MakeAIWorkPage } from './pages/MakeAIWorkPage';
 import { SearchSettingsPage } from './pages/SearchSettingsPage';
 import { PublicAdvertisingPage } from './pages/PublicAdvertisingPage';
 import { PublicBusinessPage } from './pages/PublicBusinessPage';
+import { PublicStudioPage } from './pages/PublicStudioPage';
 import { PublicCreatorProfilePage } from './pages/creator/PublicCreatorProfilePage';
 
 // General User Pages
@@ -82,6 +83,11 @@ export const App: React.FC = () => {
           <Route path="/advertising" element={<PublicAdvertisingPage />} />
           <Route path="/business" element={<PublicBusinessPage />} />
           <Route path="/business/solutions" element={<PublicBusinessPage />} />
+          <Route path="/studio" element={<PublicStudioPage />} />
+          <Route path="/builders" element={<PublicStudioPage />} />
+          <Route path="/store" element={<ZunmeStorePage />} />
+          <Route path="/store/:category" element={<ZunmeStorePage />} />
+          <Route path="/shop" element={<Navigate to="/store" replace />} />
           <Route path="/make-ai-work" element={<MakeAIWorkPage />} />
           <Route path="/settings" element={<SearchSettingsPage />} />
           <Route path="/terms" element={<TermsPage />} />
@@ -123,8 +129,6 @@ export const App: React.FC = () => {
           {/* Top-Level Quick Shortcuts */}
           <Route path="/chat" element={<Navigate to="/user/chat" replace />} />
           <Route path="/search" element={<Navigate to="/user/search" replace />} />
-          <Route path="/builders" element={<Navigate to="/user/builders" replace />} />
-          <Route path="/studio" element={<Navigate to="/user/builders" replace />} />
           <Route path="/library" element={<Navigate to="/user/library" replace />} />
 
           {/* Specialist Workspaces (Under AppShell) */}
@@ -168,13 +172,6 @@ export const App: React.FC = () => {
             <Route index element={<BusinessWorkspacePage />} />
             <Route path=":section" element={<BusinessWorkspacePage />} />
           </Route>
-
-          {/* Zunme Store & Shop Suite */}
-          <Route path="/store" element={<AppShell />}>
-            <Route index element={<ZunmeStorePage />} />
-            <Route path=":category" element={<ZunmeStorePage />} />
-          </Route>
-          <Route path="/shop" element={<Navigate to="/store" replace />} />
 
           {/* Zunme Merchant Zone Suite */}
           <Route path="/merchant-zone" element={<AppShell />}>
