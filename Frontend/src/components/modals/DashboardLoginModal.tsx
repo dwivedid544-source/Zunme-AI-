@@ -95,7 +95,7 @@ export const DashboardLoginModal: React.FC<DashboardLoginModalProps> = ({ isOpen
     {
       id: 'business',
       name: 'Business & CRM Hub',
-      path: '/business',
+      path: '/business/overview',
       role: 'USER',
       roleLabel: 'Business',
       icon: <Briefcase size={18} />,
@@ -104,7 +104,7 @@ export const DashboardLoginModal: React.FC<DashboardLoginModalProps> = ({ isOpen
     {
       id: 'social',
       name: 'Social & Content Scheduler',
-      path: '/social',
+      path: '/social/calendar',
       role: 'USER',
       roleLabel: 'Social',
       icon: <Share2 size={18} />,
@@ -113,7 +113,7 @@ export const DashboardLoginModal: React.FC<DashboardLoginModalProps> = ({ isOpen
     {
       id: 'ads',
       name: 'Zunme Ads Platform',
-      path: '/ads',
+      path: '/ads/overview',
       role: 'USER',
       roleLabel: 'Ads Platform',
       icon: <Megaphone size={18} />,

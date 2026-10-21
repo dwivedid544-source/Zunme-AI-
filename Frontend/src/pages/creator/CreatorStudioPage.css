@@ -797,3 +797,125 @@
   gap: 8px;
 }
 
+/* Sub-Navigation Pills Container */
+.creator-subnav-panel {
+  padding: 10px 16px;
+}
+
+.creator-subnav-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.creator-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .creator-subnav-panel {
+    padding: 8px 12px !important;
+    overflow: hidden;
+  }
+
+  .creator-subnav-pills {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+    padding-bottom: 2px;
+  }
+
+  .creator-subnav-pills::-webkit-scrollbar {
+    display: none;
+  }
+
+  .creator-subnav-pill {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 6px 14px !important;
+    font-size: 12px !important;
+  }
+
+  .creator-profile-card {
+    padding: 18px 16px;
+  }
+
+  .creator-profile-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .creator-stats-socials {
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .creator-stats-pills {
+    width: 100%;
+    justify-content: space-around;
+    padding: 8px 6px;
+  }
+
+  .creator-actions-row {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .marketplace-view-toggle {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .marketplace-view-btn {
+    flex: 1;
+    white-space: nowrap;
+    font-size: 11.5px;
+    padding: 6px 10px;
+    justify-content: center;
+  }
+
+  .hire-directory-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .creator-avatar-circle {
+    width: 58px;
+    height: 58px;
+    font-size: 22px;
+  }
+
+  .stat-mini-num {
+    font-size: 13px;
+  }
+
+  .stat-mini-lbl {
+    font-size: 9px;
+  }
+
+  .creator-actions-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .creator-actions-row .btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .creator-social-links {
+    margin-left: auto;
+  }
+}
+

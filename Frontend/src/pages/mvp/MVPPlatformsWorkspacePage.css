@@ -6,10 +6,12 @@
 .mvp-workspace-container {
   padding: 28px 32px 60px;
   max-width: 1440px;
+  width: 100%;
   margin: 0 auto;
   font-family: inherit;
   color: var(--text-primary, #111827);
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* Header Area */
@@ -113,19 +115,17 @@
   background: #ffffff;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   overflow-x: auto;
-  scrollbar-width: thin;
+  scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .mvp-platforms-nav::-webkit-scrollbar {
-  height: 5px;
-}
-
-.mvp-platforms-nav::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 4px;
+  display: none;
 }
 
 .mvp-tab-btn {
@@ -184,6 +184,10 @@
   grid-template-columns: 440px 1fr;
   gap: 24px;
   align-items: start;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Left Column Card (Form Controls) */
@@ -193,6 +197,10 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .mvp-card-header {
@@ -302,6 +310,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  width: 100%;
 }
 
 .mvp-subtool-pill {
@@ -314,6 +323,9 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.15s ease;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.35;
 }
 
 .mvp-subtool-pill:hover {
@@ -343,6 +355,7 @@
   margin-top: 6px;
   box-shadow: 0 4px 12px rgba(67, 56, 202, 0.25);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-sizing: border-box;
 }
 
 .mvp-generate-btn:hover {
@@ -364,6 +377,10 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .mvp-output-header {
@@ -375,6 +392,8 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .mvp-output-status {
@@ -484,12 +503,15 @@
   border-bottom: 1px solid #f1f5f9;
   line-height: 1.4;
   letter-spacing: -0.01em;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .mvp-sections-list {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
 }
 
 .mvp-section-box,
@@ -500,6 +522,8 @@
   padding: 18px 20px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
   transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .mvp-section-box:hover,
@@ -517,6 +541,7 @@
   margin-bottom: 12px;
   padding-bottom: 10px;
   border-bottom: 1px solid #f8fafc;
+  flex-wrap: wrap;
 }
 
 .mvp-sec-title,
@@ -525,6 +550,8 @@
   font-weight: 700;
   color: #1e293b;
   margin: 0;
+  min-width: 0;
+  word-break: break-word;
 }
 
 .mvp-sec-badge,
@@ -536,7 +563,8 @@
   border: 1px solid rgba(16, 185, 129, 0.25);
   padding: 3px 10px;
   border-radius: 9999px;
-  white-space: nowrap;
+  white-space: normal;
+  text-align: center;
 }
 
 .mvp-sec-pre,
@@ -619,69 +647,191 @@
 @media (max-width: 1024px) {
   .mvp-content-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+    min-width: 0;
   }
 }
 
 @media (max-width: 768px) {
   .mvp-workspace-container {
-    padding: 16px 14px 40px;
+    padding: 16px 12px 40px;
   }
 
   .mvp-header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 14px;
   }
 
   .mvp-title {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .mvp-subtitle {
-    font-size: 13.5px;
+    font-size: 13px;
   }
 
   .mvp-header-actions {
     width: 100%;
-    justify-content: stretch;
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
   }
 
   .mvp-header-actions button {
-    flex: 1;
+    width: 100%;
     justify-content: center;
-    font-size: 13px;
+    font-size: 12.5px;
+    padding: 8px 12px;
+  }
+
+  .mvp-content-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .mvp-card-header {
+    padding: 14px 16px;
+  }
+
+  .mvp-form-body {
+    padding: 16px 14px;
+    gap: 14px;
   }
 
   .mvp-input-row {
     grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .mvp-output-header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .mvp-output-status {
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .mvp-output-toolbar {
     width: 100%;
-    justify-content: space-between;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
   }
 
-  .mvp-output-toolbar button {
+  .mvp-output-toolbar button,
+  .mvp-tool-btn {
     flex: 1;
+    min-width: 70px;
     justify-content: center;
+    padding: 7px 6px;
+    font-size: 11.5px;
+    white-space: nowrap;
+    gap: 4px;
+  }
+
+  .mvp-output-content,
+  .mvp-output-body {
+    padding: 16px 14px;
+  }
+
+  .mvp-section-box,
+  .mvp-result-section {
+    padding: 14px;
+  }
+
+  .mvp-sec-head,
+  .mvp-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .mvp-sec-badge,
+  .mvp-section-badge {
+    align-self: flex-start;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    white-space: normal;
+  }
+
+  .mvp-metrics-row,
+  .mvp-metrics-bar {
+    padding: 10px 14px;
+    gap: 6px;
+  }
+
+  .mvp-metric-chip,
+  .mvp-metric-item {
+    font-size: 11px;
+    padding: 4px 8px;
+    white-space: normal;
+  }
+
+  .mvp-output-footer,
+  .mvp-card-footer {
+    padding: 12px 14px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .mvp-jump-link,
+  .mvp-footer-link {
+    justify-content: center;
+    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
+  .mvp-workspace-container {
+    padding: 10px 8px 36px;
+  }
+
+  .mvp-platforms-nav {
+    padding: 4px;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
   .mvp-tab-btn {
-    padding: 8px 12px;
+    padding: 6px 10px;
+    gap: 6px;
   }
 
   .mvp-tab-name {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .mvp-tab-badge {
     display: none;
+  }
+
+  .mvp-generate-btn {
+    padding: 11px 14px;
+    font-size: 13.5px;
+    gap: 6px;
+  }
+
+  .mvp-subtool-pill {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+
+  .mvp-result-headline,
+  .mvp-output-headline {
+    font-size: 16px;
+  }
+
+  .mvp-sec-pre,
+  .mvp-section-content {
+    font-size: 12.5px;
   }
 }

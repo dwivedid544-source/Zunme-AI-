@@ -471,9 +471,9 @@ export const ZunmeStorePage: React.FC = () => {
           )}
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div className="store-filter-sort-group">
           {/* Price Selector */}
-          <div style={{ display: 'flex', background: '#FFFFFF', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: '2px' }}>
+          <div className="store-price-filter-wrap" style={{ display: 'flex', background: '#FFFFFF', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: '2px' }}>
             <button
               type="button"
               onClick={() => setFilterPrice('all')}

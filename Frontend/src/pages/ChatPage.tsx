@@ -126,7 +126,7 @@ export const ChatPage: React.FC = () => {
           </span>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="chat-header-actions">
           {/* Part 10: Automatic Query Grounding Toggle */}
           <button
             type="button"

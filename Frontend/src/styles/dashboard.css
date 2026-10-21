@@ -637,6 +637,155 @@
   }
 }
 
+/* Home Quick AI Composer */
+.home-ask-composer {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.home-ask-input {
+  width: 100%;
+  height: 52px;
+  font-size: 15px;
+  padding-left: 20px;
+  padding-right: 155px;
+  background: #FFFFFF;
+  border: 1px solid #E2E6F2;
+  color: #111625;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(30, 20, 60, 0.04);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.home-ask-input:focus {
+  border-color: #6E56CF;
+  box-shadow: 0 0 0 3px rgba(110, 86, 207, 0.15);
+}
+
+.home-ask-actions-group {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.home-ask-mic-btn {
+  background: transparent;
+  color: #64748B;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.home-ask-mic-btn:hover {
+  background: rgba(110, 86, 207, 0.08);
+  color: #6E56CF;
+}
+
+.home-ask-mic-btn.listening {
+  background: rgba(239, 68, 68, 0.12);
+  color: #EF4444;
+  animation: pulse 1.5s infinite;
+}
+
+.home-ask-btn {
+  border-radius: var(--radius-full);
+  padding: 8px 18px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+}
+
+/* Admin Warehouse Modal Layout */
+.admin-warehouse-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-top: 1px solid #E8ECF5;
+  background: #FAFAFC;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-warehouse-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .admin-warehouse-modal-container {
+    max-width: 95vw !important;
+    border-radius: 16px !important;
+  }
+
+  .admin-warehouse-modal-header {
+    padding: 14px 16px !important;
+  }
+
+  .admin-warehouse-modal-body {
+    padding: 14px 14px !important;
+    gap: 14px !important;
+  }
+
+  .admin-warehouse-modal-footer {
+    padding: 12px 14px !important;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .admin-warehouse-modal-actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    flex-wrap: nowrap;
+  }
+
+  .admin-warehouse-modal-action-btn {
+    flex: 1;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 6px !important;
+    font-size: 11.5px !important;
+    white-space: nowrap;
+    gap: 4px;
+  }
+
+  .admin-warehouse-modal-action-btn span {
+    white-space: nowrap;
+  }
+
+  .admin-warehouse-modal-remove-btn {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+  }
+}
+
 @media (max-width: 480px) {
   .dashboard-page-container {
     padding: 12px;
@@ -685,13 +834,26 @@
 
   .home-ask-input {
     font-size: 13.5px !important;
-    padding-right: 90px !important;
+    padding-left: 14px !important;
+    padding-right: 122px !important;
     height: 46px !important;
   }
 
+  .home-ask-actions-group {
+    right: 4px;
+    gap: 4px;
+  }
+
+  .home-ask-mic-btn {
+    width: 30px;
+    height: 30px;
+  }
+
   .home-ask-btn {
-    padding: 0 14px !important;
-    font-size: 12.5px !important;
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    height: 36px !important;
+    gap: 4px;
   }
 }
 

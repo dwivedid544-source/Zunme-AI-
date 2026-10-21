@@ -282,7 +282,19 @@ export const LoginPage: React.FC = () => {
                     key={persona.id}
                     type="button"
                     className={`energy-persona-card ${isSelected ? 'is-selected' : ''}`}
-                    onClick={() => handleSelectPersona(persona)}
+                    onClick={() => {
+                      if (isSelected) {
+                        // Direct instant sign-in on clicking already selected card
+                        loginWithRole(persona.role, persona.name);
+                        navigate(persona.path);
+                      } else {
+                        handleSelectPersona(persona);
+                      }
+                    }}
+                    onDoubleClick={() => {
+                      loginWithRole(persona.role, persona.name);
+                      navigate(persona.path);
+                    }}
                   >
                     <div
                       className="persona-icon-box"
@@ -301,7 +313,17 @@ export const LoginPage: React.FC = () => {
 
                     <span className="persona-badge-tag">{persona.roleBadge}</span>
 
-                    <ArrowRight size={15} className="persona-arrow" />
+                    <span
+                      style={{ display: 'inline-flex', alignItems: 'center' }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        loginWithRole(persona.role, persona.name);
+                        navigate(persona.path);
+                      }}
+                      title={`Sign in to ${persona.name}`}
+                    >
+                      <ArrowRight size={15} className="persona-arrow" />
+                    </span>
                   </button>
                 );
               })}

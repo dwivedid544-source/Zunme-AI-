@@ -121,7 +121,7 @@ export const UserHomePage: React.FC = () => {
           </p>
 
           {/* Quick AI Input Composer */}
-          <form onSubmit={handleStartPrompt} style={{ display: 'flex', gap: '10px', position: 'relative' }}>
+          <form onSubmit={handleStartPrompt} className="home-ask-composer">
             <input
               type="text"
               className="input-field home-ask-input"
@@ -129,57 +129,27 @@ export const UserHomePage: React.FC = () => {
               value={promptInput}
               onChange={(e) => setPromptInput(e.target.value)}
               style={{
-                height: '52px',
-                fontSize: '15px',
-                paddingRight: '165px',
-                background: '#FFFFFF',
-                borderColor: isVoiceListening ? '#EF4444' : '#E2E6F2',
-                color: '#111625',
-                borderRadius: 'var(--radius-full)',
-                boxShadow: '0 2px 8px rgba(30, 20, 60, 0.04)'
+                borderColor: isVoiceListening ? '#EF4444' : undefined
               }}
             />
-            {/* Mic Voice Button */}
-            <button
-              type="button"
-              onClick={handleVoiceInput}
-              title={isVoiceListening ? "Listening... click to stop" : "Voice input (Click to speak or simulate voice)"}
-              style={{
-                position: 'absolute',
-                right: '122px',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                background: isVoiceListening ? 'rgba(239, 68, 68, 0.12)' : 'transparent',
-                color: isVoiceListening ? '#EF4444' : '#64748B',
-                border: 'none',
-                borderRadius: '50%',
-                width: '34px',
-                height: '34px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}
-            >
-              <Mic size={17} />
-            </button>
-            <button
-              type="submit"
-              className="btn btn-primary home-ask-btn"
-              style={{
-                position: 'absolute',
-                right: '6px',
-                top: '6px',
-                bottom: '6px',
-                borderRadius: 'var(--radius-full)',
-                padding: '0 20px',
-                fontWeight: '700'
-              }}
-            >
-              <Send size={15} />
-              <span>Ask AI</span>
-            </button>
+            <div className="home-ask-actions-group">
+              <button
+                type="button"
+                onClick={handleVoiceInput}
+                className={`home-ask-mic-btn ${isVoiceListening ? 'listening' : ''}`}
+                title={isVoiceListening ? "Listening... click to stop" : "Voice input (Click to speak or simulate voice)"}
+                aria-label="Voice input"
+              >
+                <Mic size={16} />
+              </button>
+              <button
+                type="submit"
+                className="btn btn-primary home-ask-btn"
+              >
+                <Send size={14} />
+                <span>Ask AI</span>
+              </button>
+            </div>
           </form>
 
           {/* Prompt Starter Pills */}
@@ -359,13 +329,13 @@ export const UserHomePage: React.FC = () => {
                 }}
                 className="hover-highlight"
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', overflow: 'hidden' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', overflow: 'hidden', minWidth: 0, flex: 1 }}>
                   <MessageSquare size={16} color="#6E56CF" style={{ flexShrink: 0 }} />
                   <span style={{ fontSize: '13px', fontWeight: '600', color: '#111625', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     {conv.title}
                   </span>
                 </div>
-                <span style={{ fontSize: '11px', color: '#8C97B0', whiteSpace: 'nowrap' }}>
+                <span style={{ fontSize: '11px', color: '#8C97B0', whiteSpace: 'nowrap', flexShrink: 0, marginLeft: '8px' }}>
                   {new Date(conv.updatedAt).toLocaleDateString()}
                 </span>
               </div>
@@ -399,18 +369,19 @@ export const UserHomePage: React.FC = () => {
                   padding: '12px 14px',
                   borderRadius: '10px',
                   background: '#FAFBFD',
-                  border: '1px solid #E8ECF5'
+                  border: '1px solid #E8ECF5',
+                  gap: '10px'
                 }}
               >
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', overflow: 'hidden' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', overflow: 'hidden', minWidth: 0, flex: 1 }}>
                   <span style={{ fontSize: '13px', fontWeight: '700', color: '#111625', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     {item.title}
                   </span>
-                  <span style={{ fontSize: '11px', color: '#5F6B85' }}>
+                  <span style={{ fontSize: '11px', color: '#5F6B85', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     Category: {item.contentType} • {new Date(item.createdAt).toLocaleDateString()}
                   </span>
                 </div>
-                <NavLink to="/user/library" className="btn btn-outline btn-sm" style={{ padding: '3px 8px', fontSize: '11px' }}>
+                <NavLink to="/user/library" className="btn btn-outline btn-sm" style={{ padding: '3px 8px', fontSize: '11px', flexShrink: 0 }}>
                   View
                 </NavLink>
               </div>

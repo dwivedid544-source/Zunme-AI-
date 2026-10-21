@@ -307,12 +307,12 @@ export const AdminAIWarehousePage: React.FC = () => {
           onClick={() => setSelectedAsset(null)}
         >
           <div
-            className="dashboard-modal-container"
+            className="dashboard-modal-container admin-warehouse-modal-container"
             onClick={(e) => e.stopPropagation()}
             style={{ maxWidth: '680px' }}
           >
             {/* Header */}
-            <div className="panel-header" style={{ padding: '18px 24px', borderBottom: '1px solid #E8ECF5', margin: 0, background: '#FAFAFC', borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }}>
+            <div className="panel-header admin-warehouse-modal-header" style={{ padding: '18px 24px', borderBottom: '1px solid #E8ECF5', margin: 0, background: '#FAFAFC', borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#EFEBFC', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Package size={20} color="#6E56CF" />
@@ -338,7 +338,7 @@ export const AdminAIWarehousePage: React.FC = () => {
             </div>
 
             {/* Modal Body */}
-            <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '18px', maxHeight: '72vh', overflowY: 'auto' }}>
+            <div className="admin-warehouse-modal-body" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '18px', maxHeight: '72vh', overflowY: 'auto' }}>
               {/* Asset Title & Description */}
               <div style={{ background: '#FAFBFD', padding: '16px', borderRadius: '12px', border: '1px solid #E8ECF5' }}>
                 <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px', marginBottom: '8px' }}>
@@ -448,19 +448,10 @@ Validate references, maintain structural symmetry, and apply optimal conversion 
             </div>
 
             {/* Modal Actions Footer */}
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              padding: '16px 24px',
-              borderTop: '1px solid #E8ECF5',
-              background: '#FAFAFC',
-              borderBottomLeftRadius: '20px',
-              borderBottomRightRadius: '20px'
-            }}>
+            <div className="admin-warehouse-modal-footer">
               <button
                 type="button"
-                className="btn btn-outline btn-sm"
+                className="btn btn-outline btn-sm admin-warehouse-modal-remove-btn"
                 style={{ color: '#E11D48', borderColor: '#FEECEB' }}
                 onClick={() => handleModerateAction(selectedAsset.id, 'delete')}
               >
@@ -468,10 +459,10 @@ Validate references, maintain structural symmetry, and apply optimal conversion 
                 <span>Remove Asset</span>
               </button>
 
-              <div style={{ display: 'flex', gap: '10px' }}>
+              <div className="admin-warehouse-modal-actions">
                 <button
                   type="button"
-                  className="btn btn-outline btn-sm"
+                  className="btn btn-outline btn-sm admin-warehouse-modal-action-btn"
                   onClick={() => setSelectedAsset(null)}
                 >
                   Close
@@ -479,7 +470,7 @@ Validate references, maintain structural symmetry, and apply optimal conversion 
 
                 <button
                   type="button"
-                  className="btn btn-sm"
+                  className="btn btn-sm admin-warehouse-modal-action-btn"
                   style={{ background: '#FEF3E2', color: '#D97706', border: '1px solid rgba(217, 119, 6, 0.3)' }}
                   onClick={() => handleModerateAction(selectedAsset.id, 'flag')}
                 >
@@ -489,7 +480,7 @@ Validate references, maintain structural symmetry, and apply optimal conversion 
 
                 <button
                   type="button"
-                  className="btn btn-primary btn-sm"
+                  className="btn btn-primary btn-sm admin-warehouse-modal-action-btn"
                   style={{ background: '#059669', borderColor: '#059669' }}
                   onClick={() => handleModerateAction(selectedAsset.id, 'approve')}
                 >

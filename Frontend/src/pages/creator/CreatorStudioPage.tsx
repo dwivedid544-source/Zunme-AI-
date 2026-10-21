@@ -740,7 +740,7 @@ export const CreatorStudioPage: React.FC = () => {
               </div>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div className="creator-actions-row">
               <button
                 className={`btn btn-sm ${isFollowingCreator ? 'btn-outline' : 'btn-primary'}`}
                 onClick={handleToggleFollow}
@@ -794,8 +794,8 @@ export const CreatorStudioPage: React.FC = () => {
       </div>
 
       {/* Studio Sub-Navigation Tabs */}
-      <div className="glass-panel" style={{ padding: '10px 16px' }}>
-        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+      <div className="glass-panel creator-subnav-panel" style={{ padding: '10px 16px' }}>
+        <div className="creator-subnav-pills">
           {[
             { key: 'Marketplace & Showcase', label: 'Public Asset Showcase' },
             { key: 'Hire Creators', label: 'Hire Creators Directory' },
@@ -806,7 +806,7 @@ export const CreatorStudioPage: React.FC = () => {
           ].map((tab) => (
             <button
               key={tab.key}
-              className={`filter-pill ${activeTab === tab.key ? 'active' : ''}`}
+              className={`filter-pill creator-subnav-pill ${activeTab === tab.key ? 'active' : ''}`}
               onClick={() => {
                 setActiveTab(tab.key as any);
                 if (tab.key === 'Hire Creators') {
