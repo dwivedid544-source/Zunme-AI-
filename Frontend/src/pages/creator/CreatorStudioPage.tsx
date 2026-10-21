@@ -794,7 +794,7 @@ export const CreatorStudioPage: React.FC = () => {
       </div>
 
       {/* Studio Sub-Navigation Tabs */}
-      <div className="glass-panel creator-subnav-panel" style={{ padding: '10px 16px' }}>
+      <div className="glass-panel creator-subnav-panel">
         <div className="creator-subnav-pills">
           {[
             { key: 'Marketplace & Showcase', label: 'Public Asset Showcase' },
