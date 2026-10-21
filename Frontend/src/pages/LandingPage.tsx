@@ -42,7 +42,7 @@ export interface EcosystemProduct {
   linkText: string;
 }
 
-export const ZUNME_ECOSYSTEM_PRODUCTS: EcosystemProduct[] = [
+const ZUNME_ECOSYSTEM_PRODUCTS: EcosystemProduct[] = [
   {
     id: 'zunme-ai',
     name: 'Zunme AI',
@@ -54,7 +54,7 @@ export const ZUNME_ECOSYSTEM_PRODUCTS: EcosystemProduct[] = [
     icon: <Sparkles size={22} color="#FFFFFF" />,
     iconBg: 'linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%)',
     accentColor: '#8B5CF6',
-    linkTo: '/chat',
+    linkTo: '/login',
     linkText: 'Explore AI Assistant'
   },
   {
@@ -85,7 +85,7 @@ export interface StoreFeaturedProduct {
   linkTo: string;
 }
 
-export const STORE_FEATURED_PRODUCTS: StoreFeaturedProduct[] = [
+const STORE_FEATURED_PRODUCTS: StoreFeaturedProduct[] = [
   {
     id: 'ai-content',
     name: 'AI Content',
@@ -358,7 +358,7 @@ export const LandingPage: React.FC = () => {
         {/* The 6 Capability Launchers (Pill Row) */}
         <div className="google-capabilities-group">
           <div className="google-pills-row">
-            <NavLink to="/chat" className="google-capability-pill">
+            <NavLink to="/login" className="google-capability-pill">
               <MessageSquare size={14} className="text-purple" />
               <span>AI Chat</span>
             </NavLink>
@@ -366,7 +366,7 @@ export const LandingPage: React.FC = () => {
               <Search size={14} className="text-blue" />
               <span>Web Search</span>
             </NavLink>
-            <NavLink to={user ? "/user/builders" : "/login"} className="google-capability-pill">
+            <NavLink to="/login" className="google-capability-pill">
               <PenTool size={14} className="text-indigo" />
               <span>AI Content Builders</span>
             </NavLink>
