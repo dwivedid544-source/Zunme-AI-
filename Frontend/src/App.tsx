@@ -20,6 +20,7 @@ import { SearchSettingsPage } from './pages/SearchSettingsPage';
 import { PublicAdvertisingPage } from './pages/PublicAdvertisingPage';
 import { PublicBusinessPage } from './pages/PublicBusinessPage';
 import { PublicStudioPage } from './pages/PublicStudioPage';
+import { PublicLibraryPage } from './pages/PublicLibraryPage';
 import { PublicCreatorProfilePage } from './pages/creator/PublicCreatorProfilePage';
 
 // General User Pages
@@ -85,6 +86,8 @@ export const App: React.FC = () => {
           <Route path="/business/solutions" element={<PublicBusinessPage />} />
           <Route path="/studio" element={<PublicStudioPage />} />
           <Route path="/builders" element={<PublicStudioPage />} />
+          <Route path="/library" element={<PublicLibraryPage />} />
+          <Route path="/documents" element={<PublicLibraryPage />} />
           <Route path="/store" element={<ZunmeStorePage />} />
           <Route path="/store/:category" element={<ZunmeStorePage />} />
           <Route path="/shop" element={<Navigate to="/store" replace />} />
@@ -129,7 +132,6 @@ export const App: React.FC = () => {
           {/* Top-Level Quick Shortcuts */}
           <Route path="/chat" element={<Navigate to="/user/chat" replace />} />
           <Route path="/search" element={<Navigate to="/user/search" replace />} />
-          <Route path="/library" element={<Navigate to="/user/library" replace />} />
 
           {/* Specialist Workspaces (Under AppShell) */}
           <Route path="/warehouse" element={<AppShell />}>

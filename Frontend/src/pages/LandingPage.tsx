@@ -9,7 +9,6 @@ import {
   ArrowRight,
   CheckCircle2,
   ShieldCheck,
-  Zap,
   Layers,
   Database,
   Wand2,
@@ -287,14 +286,18 @@ export const LandingPage: React.FC = () => {
         )}
       </header>
 
+      {/* Top Right Corner Brand Logo (outside header, within landing canvas) */}
+      <NavLink to="/" className="google-top-right-brand" title="Zunme AI">
+        <img src="/zunme_logo.png" alt="Zunme AI" className="google-top-right-logo-img" />
+      </NavLink>
+
       {/* ==========================================================================
           TASKS 2 & 3: HERO STAGE & GOOGLE-STYLE CENTRAL SEARCH BAR (Client Doc Spec)
-          Brand Logo/Wordmark -> Central Search Bar with Voice Mic -> 6 Capability Pills
+          Brand Wordmark -> Central Search Bar with Voice Mic -> 6 Capability Pills
           ========================================================================== */}
       <main className="google-home-stage">
         {/* Brand Block */}
         <div className="google-brand-block">
-          <img src="/zunme_logo.png" alt="Zunme AI" className="google-brand-logo-img" />
           <div className="google-brand-wordmark">Z u n m e</div>
           <h1 className="google-brand-tagline">AI Workspace for Ideas, Content & Discovery.</h1>
           <p className="google-brand-subtitle">
@@ -314,7 +317,6 @@ export const LandingPage: React.FC = () => {
               placeholder="Search the web, create compelling content, or ask AI..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              autoFocus
             />
             {searchQuery && (
               <button
@@ -384,12 +386,6 @@ export const LandingPage: React.FC = () => {
           <p className="google-capabilities-caption">
             Dedicated AI capabilities organized into one seamless workspace. No tab hopping, no disconnected tools.
           </p>
-        </div>
-
-        {/* Client Speed Architecture Note */}
-        <div className="google-speed-note-strip" title="Optimized for instant page load speed and search indexation">
-          <Zap size={13} style={{ color: '#D97706' }} />
-          <span>High-Performance Architecture • Standard lightweight HTML & CSS for sub-second speeds</span>
         </div>
       </main>
 
@@ -474,11 +470,21 @@ export const LandingPage: React.FC = () => {
                   Unlike traditional ad-supported platforms that monitor user data, Zunme empowers individuals and small business owners with confidential workspace capabilities and private zBox email accounts.
                 </p>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'flex-end', paddingTop: '8px' }}>
+              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', paddingTop: '10px' }}>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setShowAboutModal(false)}
+                >
+                  Close
+                </button>
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={() => setShowAboutModal(false)}
+                  onClick={() => {
+                    setShowAboutModal(false);
+                    navigate('/studio');
+                  }}
                 >
                   Explore Workspace
                 </button>
