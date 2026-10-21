@@ -334,6 +334,7 @@
   min-width: 0;
   max-width: 100%;
   box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 /* Mobile Sidebar Drawer */
