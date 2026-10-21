@@ -108,12 +108,12 @@ export const AdFormatBuildersPage: React.FC = () => {
             <span className="badge badge-primary">Multichannel Ad Studio</span>
             <span style={{ fontSize: '13px', color: 'var(--color-text-muted)' }}>Document B Ad Specification Matrix</span>
           </div>
-          <h1 style={{ fontSize: '24px', fontWeight: 800, color: 'var(--color-text-primary)', marginTop: '4px' }}>
+          <h1 className="ad-builders-title" style={{ fontSize: '24px', fontWeight: 800, color: 'var(--color-text-primary)', marginTop: '4px' }}>
             Advertising Format Builders &amp; Live Simulators
           </h1>
         </div>
 
-        <div style={{ display: 'flex', gap: '10px' }}>
+        <div className="ad-builders-header-actions" style={{ display: 'flex', gap: '10px' }}>
           <NavLink to="/ads/onboarding" className="btn btn-outline btn-sm" style={{ textDecoration: 'none' }}>
             <span>7-Step Setup Wizard</span>
           </NavLink>

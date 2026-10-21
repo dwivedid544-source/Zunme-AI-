@@ -257,7 +257,7 @@ export const VideoScriptStudio: React.FC = () => {
             />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+          <div className="form-grid-2">
             <div className="studio-form-group">
               <label className="studio-label">Target Platform</label>
               <select
@@ -325,7 +325,7 @@ export const VideoScriptStudio: React.FC = () => {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#FFFFFF', padding: '14px 20px', borderRadius: 'var(--radius-xl)', border: '1px solid #E8ECF5', flexWrap: 'wrap', gap: '10px' }}>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
               <span className="badge badge-primary">{script.platform}</span>
               <span className="badge badge-neutral">{script.duration}</span>
               <span className="badge badge-neutral">{script.hookStyle}</span>
@@ -335,7 +335,7 @@ export const VideoScriptStudio: React.FC = () => {
             </h3>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
             <button className="btn btn-outline btn-sm" onClick={handleCopyFormattedScript}>
               {copiedScript ? <Check size={13} color="#059669" /> : <Copy size={13} />}
               <span>{copiedScript ? 'Copied' : 'Copy'}</span>

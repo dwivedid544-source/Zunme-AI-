@@ -13,6 +13,8 @@
   margin: 0 auto;
   padding: var(--space-6);
   color: var(--color-text-primary);
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 /* Page Header */
@@ -549,6 +551,10 @@
   .dashboard-page-container {
     padding: var(--space-4);
     gap: var(--space-4);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 
   .admin-activity-item {
@@ -582,7 +588,15 @@
   }
 
   .cards-grid-2, .cards-grid-3, .cards-grid-4, .plans-pricing-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .cards-grid-2 > *, .cards-grid-3 > *, .cards-grid-4 > *, .plans-pricing-grid > *, .glass-panel {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .dashboard-header {
@@ -634,6 +648,28 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+  }
+
+  .home-welcome-hero {
+    padding: 20px 16px;
+  }
+
+  .home-welcome-title {
+    font-size: 24px;
+  }
+
+  .home-welcome-desc {
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+
+  .home-mvp-banner {
+    padding: 14px 16px;
+  }
+
+  .home-mvp-action-row {
+    width: 100%;
+    justify-content: space-between;
   }
 }
 
@@ -708,6 +744,53 @@
   align-items: center;
   gap: 6px;
   height: 40px;
+}
+
+/* Base styles for home welcome hero & mvp banner */
+.home-welcome-hero {
+  padding: var(--space-6) var(--space-8);
+}
+
+.home-welcome-title {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #111625;
+  margin-bottom: 8px;
+}
+
+.home-welcome-desc {
+  font-size: 15px;
+  color: #5F6B85;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.home-mvp-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, rgba(110, 86, 207, 0.08) 0%, rgba(5, 150, 105, 0.05) 100%);
+  border: 1px solid rgba(110, 86, 207, 0.2);
+  border-radius: 12px;
+}
+
+.home-mvp-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 260px;
+}
+
+.home-mvp-action-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 /* Admin Warehouse Modal Layout */
@@ -788,29 +871,42 @@
 
 @media (max-width: 480px) {
   .dashboard-page-container {
-    padding: 12px;
+    padding: 12px 10px;
     gap: 12px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 
   .dashboard-title-group h1 {
     font-size: 20px;
+    word-break: break-word;
   }
 
   .dashboard-subtitle {
     font-size: 12.5px;
+    word-break: break-word;
   }
 
   .glass-panel {
-    padding: 16px 14px;
+    padding: 14px 12px;
     border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
   }
 
   .metrics-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .metric-card {
-    padding: 14px 16px;
+    padding: 14px 14px;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .metric-value {
@@ -824,7 +920,8 @@
   .modal-card {
     padding: 18px 14px;
     border-radius: var(--radius-xl);
-    max-width: 95vw;
+    max-width: 95%;
+    width: 100%;
     max-height: 92vh;
   }
 
@@ -832,11 +929,26 @@
     font-size: 12.5px;
   }
 
+  .home-welcome-hero {
+    padding: 16px 12px !important;
+  }
+
+  .home-welcome-title {
+    font-size: 20px !important;
+    line-height: 1.25 !important;
+  }
+
+  .home-welcome-desc {
+    font-size: 13px !important;
+    margin-bottom: 16px !important;
+    line-height: 1.45 !important;
+  }
+
   .home-ask-input {
-    font-size: 13.5px !important;
-    padding-left: 14px !important;
-    padding-right: 122px !important;
-    height: 46px !important;
+    font-size: 13px !important;
+    padding-left: 12px !important;
+    padding-right: 86px !important;
+    height: 44px !important;
   }
 
   .home-ask-actions-group {
@@ -845,16 +957,46 @@
   }
 
   .home-ask-mic-btn {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
   }
 
   .home-ask-btn {
-    padding: 6px 12px !important;
-    font-size: 12px !important;
-    height: 36px !important;
-    gap: 4px;
+    padding: 0 !important;
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: var(--radius-full) !important;
+    justify-content: center !important;
+    gap: 0 !important;
+  }
+
+  .home-ask-btn span {
+    display: none !important;
+  }
+
+  .home-mvp-banner {
+    padding: 14px 12px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  .home-mvp-info {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .home-mvp-action-row {
+    width: 100% !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+  }
+
+  .home-mvp-btn {
+    width: 100% !important;
+    justify-content: center !important;
   }
 }
+
 
 

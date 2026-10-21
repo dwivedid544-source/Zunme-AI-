@@ -437,21 +437,21 @@ export const SEOWorkspacePage: React.FC = () => {
           {/* Top Banner: 4 Core Crawler Architecture from Client Document (Theme Matched: Clean Luxury Glassmorphic) */}
           <div className="glass-panel" style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: '16px', boxShadow: '0 4px 20px rgba(110, 86, 207, 0.05)', padding: '22px 24px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '14px', marginBottom: '16px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'linear-gradient(135deg, #6E56CF 0%, #4338CA 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(110, 86, 207, 0.25)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap', minWidth: 0 }}>
+                <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'linear-gradient(135deg, #6E56CF 0%, #4338CA 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(110, 86, 207, 0.25)', flexShrink: 0 }}>
                   <Cpu size={22} color="#FFFFFF" />
                 </div>
-                <div>
-                  <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#111827', margin: '0 0 3px 0', letterSpacing: '-0.01em' }}>
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#111827', margin: '0 0 3px 0', letterSpacing: '-0.01em', wordBreak: 'break-word' }}>
                     Zunme nTel™ Dual Crawler Telemetry &amp; Live Bot Simulator
                   </h3>
-                  <span style={{ fontSize: '13px', color: '#64748B' }}>
+                  <span style={{ fontSize: '13px', color: '#64748B', wordBreak: 'break-word' }}>
                     Autonomous web indexing engine providing factual citations, metadata extraction, and visual alt-text grounding.
                   </span>
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '8px' }}>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                 <span className="badge" style={{ background: '#F5F3FF', color: '#6E56CF', border: '1px solid #DDD6FE', fontWeight: 600, padding: '4px 10px' }}>
                   Headless WebKit Engine
                 </span>
@@ -462,7 +462,7 @@ export const SEOWorkspacePage: React.FC = () => {
             </div>
 
             {/* 4 Crawler Archetypes Strip (from Client Doc) */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '12px', borderTop: '1px solid #EEF2F6', paddingTop: '16px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: '12px', borderTop: '1px solid #EEF2F6', paddingTop: '16px' }}>
               <div style={{ background: '#F0F9FF', padding: '14px 16px', borderRadius: '12px', border: '1px solid #BAE6FD', transition: 'all 0.2s ease' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#0284C7', fontWeight: 700, fontSize: '13px', marginBottom: '5px' }}>
                   <Smartphone size={16} />
@@ -508,16 +508,16 @@ export const SEOWorkspacePage: React.FC = () => {
           {/* Interactive URL Scanner Form */}
           <div className="glass-panel">
             <form onSubmit={handleRunCrawlerSimulation} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                <div style={{ flex: 1, minWidth: '280px' }}>
+              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', width: '100%' }}>
+                <div style={{ flex: 1, minWidth: 'min(100%, 260px)' }}>
                   <label style={{ display: 'block', fontSize: '12.5px', fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: '6px' }}>
                     Target Web Page URL to Crawl &amp; Inspect
                   </label>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#FFFFFF', border: '1px solid #CBD5E1', borderRadius: '8px', padding: '0 12px' }}>
-                    <SearchCheck size={16} color="#6E56CF" />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#FFFFFF', border: '1px solid #CBD5E1', borderRadius: '8px', padding: '0 12px', width: '100%', boxSizing: 'border-box' }}>
+                    <SearchCheck size={16} color="#6E56CF" style={{ flexShrink: 0 }} />
                     <input
                       type="url"
-                      style={{ border: 'none', outline: 'none', padding: '10px 0', width: '100%', fontSize: '13.5px', fontWeight: 600, color: '#0F172A' }}
+                      style={{ border: 'none', outline: 'none', padding: '10px 0', width: '100%', minWidth: 0, fontSize: '13.5px', fontWeight: 600, color: '#0F172A' }}
                       placeholder="https://yourwebsite.com/article-slug"
                       value={crawlerUrl}
                       onChange={(e) => setCrawlerUrl(e.target.value)}
@@ -526,11 +526,11 @@ export const SEOWorkspacePage: React.FC = () => {
                   </div>
                 </div>
 
-                <div style={{ minWidth: '260px' }}>
+                <div style={{ minWidth: 'min(100%, 240px)' }}>
                   <label style={{ display: 'block', fontSize: '12.5px', fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: '6px' }}>
                     Select Bot User-Agent &amp; Viewport
                   </label>
-                  <div style={{ display: 'flex', gap: '6px' }}>
+                  <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                     <button
                       type="button"
                       className={`btn btn-sm ${crawlerDevice === 'smartphone' ? 'btn-primary' : 'btn-outline'}`}
@@ -566,7 +566,7 @@ export const SEOWorkspacePage: React.FC = () => {
                     type="submit"
                     className="btn btn-primary"
                     disabled={isCrawling}
-                    style={{ minWidth: '180px', justifyContent: 'center' }}
+                    style={{ minWidth: 'min(100%, 160px)', justifyContent: 'center' }}
                   >
                     {isCrawling ? <RefreshCw size={15} className="spin" /> : <Search size={15} />}
                     <span>{isCrawling ? 'Crawling Node...' : 'Run Bot Simulation'}</span>
@@ -601,8 +601,8 @@ export const SEOWorkspacePage: React.FC = () => {
           {/* Crawler Results Dashboard Panel */}
           <div className="glass-panel" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {/* Header Telemetry Status Bar */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 18px', background: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: '12px', flexWrap: 'wrap', gap: '10px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 14px', background: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: '12px', flexWrap: 'wrap', gap: '10px', width: '100%', boxSizing: 'border-box' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', minWidth: 0 }}>
                 <span className="badge badge-success" style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
                   <CheckCircle2 size={13} />
                   <span>HTTP {lastCrawledData.httpStatus} OK</span>
@@ -615,17 +615,18 @@ export const SEOWorkspacePage: React.FC = () => {
                 </span>
               </div>
 
-              <div style={{ fontSize: '11.5px', color: '#64748B', maxWidth: '440px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              <div style={{ fontSize: '11.5px', color: '#64748B', maxWidth: '100%', width: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 <code>{lastCrawledData.userAgent}</code>
               </div>
             </div>
 
             {/* Sub-Tabs Selector */}
-            <div style={{ display: 'flex', gap: '8px', borderBottom: '1px solid #E2E8F0', paddingBottom: '8px', overflowX: 'auto' }}>
+            <div style={{ display: 'flex', gap: '8px', borderBottom: '1px solid #E2E8F0', paddingBottom: '8px', overflowX: 'auto', WebkitOverflowScrolling: 'touch', width: '100%', boxSizing: 'border-box' }}>
               <button
                 type="button"
                 className={`filter-pill ${crawlerActiveSubTab === 'metadata' ? 'active' : ''}`}
                 onClick={() => setCrawlerActiveSubTab('metadata')}
+                style={{ whiteSpace: 'nowrap', flexShrink: 0 }}
               >
                 <FileText size={14} />
                 <span>Extracted Metadata &amp; Directives</span>
@@ -634,6 +635,7 @@ export const SEOWorkspacePage: React.FC = () => {
                 type="button"
                 className={`filter-pill ${crawlerActiveSubTab === 'images' ? 'active' : ''}`}
                 onClick={() => setCrawlerActiveSubTab('images')}
+                style={{ whiteSpace: 'nowrap', flexShrink: 0 }}
               >
                 <ImageIcon size={14} />
                 <span>Image Alt-Text Grounding ({lastCrawledData.images.length})</span>
@@ -642,6 +644,7 @@ export const SEOWorkspacePage: React.FC = () => {
                 type="button"
                 className={`filter-pill ${crawlerActiveSubTab === 'text' ? 'active' : ''}`}
                 onClick={() => setCrawlerActiveSubTab('text')}
+                style={{ whiteSpace: 'nowrap', flexShrink: 0 }}
               >
                 <Code size={14} />
                 <span>Extracted Headings &amp; Zunme Types</span>
@@ -650,6 +653,7 @@ export const SEOWorkspacePage: React.FC = () => {
                 type="button"
                 className={`filter-pill ${crawlerActiveSubTab === 'architecture' ? 'active' : ''}`}
                 onClick={() => setCrawlerActiveSubTab('architecture')}
+                style={{ whiteSpace: 'nowrap', flexShrink: 0 }}
               >
                 <ShieldCheck size={14} />
                 <span>Crawler Telemetry &amp; Grounding Flow</span>

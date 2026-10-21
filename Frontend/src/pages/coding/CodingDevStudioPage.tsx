@@ -304,7 +304,7 @@ export const CodingDevStudioPage: React.FC = () => {
 
           {/* AI Code Review & Audit Report Card */}
           <div className="ai-review-card">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
               <div className="flex items-center gap-2">
                 <Sparkles size={18} color="#635BFF" />
                 <h3 style={{ margin: 0, fontSize: '16px', fontWeight: '800', color: '#1E293B' }}>

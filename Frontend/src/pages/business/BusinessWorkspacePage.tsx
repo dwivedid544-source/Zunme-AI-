@@ -1034,7 +1034,7 @@ export const BusinessWorkspacePage: React.FC = () => {
           </div>
 
           {/* Interactive 1-Click Launch Configuration & Simulator */}
-          <div className="glass-panel" style={{ padding: '24px 28px' }}>
+          <div className="glass-panel starter-ad-config-panel" style={{ padding: '24px 28px' }}>
             <div className="panel-header" style={{ marginBottom: '16px' }}>
               <div>
                 <div className="panel-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -1050,7 +1050,7 @@ export const BusinessWorkspacePage: React.FC = () => {
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+            <div className="starter-ad-config-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '24px' }}>
               {/* Configuration Form */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <div>
@@ -1082,12 +1082,12 @@ export const BusinessWorkspacePage: React.FC = () => {
                 </div>
 
                 {/* Budget & Model Selector */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+                <div className="starter-budget-model-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '12px', fontWeight: '700', color: '#111625', marginBottom: '6px' }}>
                       Daily Budget: <strong>${starterAdBudget} / day</strong>
                     </label>
-                    <div style={{ display: 'flex', gap: '6px' }}>
+                    <div className="starter-budget-buttons-row" style={{ display: 'flex', gap: '6px' }}>
                       {[5, 10, 15, 25, 50].map((amount) => (
                         <button
                           key={amount}
@@ -1115,7 +1115,7 @@ export const BusinessWorkspacePage: React.FC = () => {
                     <label style={{ display: 'block', fontSize: '12px', fontWeight: '700', color: '#111625', marginBottom: '6px' }}>
                       Billing Model
                     </label>
-                    <div style={{ display: 'flex', gap: '6px' }}>
+                    <div className="starter-billing-buttons-row" style={{ display: 'flex', gap: '6px' }}>
                       <button
                         type="button"
                         onClick={() => setStarterPaymentModel('PPC')}
@@ -1169,7 +1169,7 @@ export const BusinessWorkspacePage: React.FC = () => {
                 </div>
 
                 {/* Deploy Button */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '6px' }}>
+                <div className="starter-deploy-actions" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '6px' }}>
                   <button
                     type="button"
                     className="btn btn-primary"
@@ -1223,7 +1223,7 @@ export const BusinessWorkspacePage: React.FC = () => {
 
               {/* Live Preview Simulator */}
               <div className="starter-ad-simulator-box">
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div className="starter-simulator-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{ fontSize: '12px', fontWeight: '800', color: '#1E293B', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                     Live Ad Appearance Simulator
                   </span>
@@ -1245,9 +1245,9 @@ export const BusinessWorkspacePage: React.FC = () => {
                     gap: '6px'
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                     <span className="ad-preview-pill">Sponsored</span>
-                    <span style={{ fontSize: '11.5px', color: '#059669', fontWeight: '600' }}>
+                    <span style={{ fontSize: '11.5px', color: '#059669', fontWeight: '600', wordBreak: 'break-all', overflowWrap: 'anywhere' }}>
                       https://zunme.ai/partner/{brandProfile.brandName ? brandProfile.brandName.toLowerCase().replace(/\s+/g, '-') : 'small-business'}
                     </span>
                   </div>

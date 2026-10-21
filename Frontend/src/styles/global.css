@@ -10,6 +10,8 @@
 html, body {
   height: 100%;
   width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   background-color: var(--color-bg);
   background-image: 
     /* Soft warm peach-rose ambient glow top right */
@@ -32,6 +34,10 @@ html, body {
 
 #root {
   min-height: 100%;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -428,9 +434,10 @@ textarea.input-field {
   }
 
   /* Prevent any accidental horizontal scroll on mobile */
-  html, body {
+  html, body, #root {
     overflow-x: hidden;
-    max-width: 100vw;
+    width: 100%;
+    max-width: 100%;
   }
 
   /* Make tables horizontally scrollable without breaking layouts */

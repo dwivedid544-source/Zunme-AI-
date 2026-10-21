@@ -122,7 +122,7 @@ export const AdOnboardingWizard: React.FC = () => {
             <span className="badge badge-primary">Client Specification Checklist</span>
             <span style={{ fontSize: '13px', color: 'var(--color-text-muted)' }}>Step {currentStep} of {totalSteps}</span>
           </div>
-          <h1 style={{ fontSize: '24px', fontWeight: 800, color: 'var(--color-text-primary)', marginTop: '4px' }}>
+          <h1 className="ad-wizard-title" style={{ fontSize: '24px', fontWeight: 800, color: 'var(--color-text-primary)', marginTop: '4px' }}>
             7-Step Advertising Account Onboarding
           </h1>
         </div>
@@ -188,7 +188,7 @@ export const AdOnboardingWizard: React.FC = () => {
                 </p>
               </div>
 
-              <div style={{ padding: '16px', background: 'var(--color-bg-alt)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div className="ad-wizard-pro-tier-box" style={{ padding: '16px', background: 'var(--color-bg-alt)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <div style={{ width: '42px', height: '42px', borderRadius: '10px', background: 'var(--color-primary)', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <ShieldCheck size={22} />
@@ -299,7 +299,7 @@ export const AdOnboardingWizard: React.FC = () => {
                 </p>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+              <div className="ad-wizard-catalog-source-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
                 <div
                   className={`zbox-platform-card ${catalogSource === 'manual' ? 'selected' : ''}`}
                   onClick={() => setCatalogSource('manual')}
@@ -361,7 +361,7 @@ export const AdOnboardingWizard: React.FC = () => {
                 </p>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
+              <div className="ad-wizard-objective-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
                 {[
                   { id: 'CONVERSIONS', label: 'Conversions & Sales', desc: 'Drive high-intent purchases and signups' },
                   { id: 'LEADS', label: 'Lead Generation', desc: 'Capture qualified email & phone inquiries' },

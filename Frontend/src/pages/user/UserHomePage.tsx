@@ -98,11 +98,10 @@ export const UserHomePage: React.FC = () => {
     <div className="dashboard-page-container">
       {/* Welcome Banner with Ambient Glow */}
       <div
-        className="glass-panel"
+        className="glass-panel home-welcome-hero"
         style={{
           background: 'linear-gradient(135deg, rgba(253, 238, 233, 0.9) 0%, rgba(245, 235, 249, 0.9) 50%, #FFFFFF 100%)',
           borderColor: '#E8ECF5',
-          padding: 'var(--space-6) var(--space-8)',
           position: 'relative',
           overflow: 'hidden',
           boxShadow: '0 4px 20px -2px rgba(30, 20, 60, 0.04)'
@@ -113,10 +112,10 @@ export const UserHomePage: React.FC = () => {
             <Sparkles size={12} />
             <span>Unified AI Workspace</span>
           </div>
-          <h1 style={{ fontSize: '32px', fontWeight: '900', letterSpacing: '-0.02em', color: '#111625', marginBottom: '8px' }}>
+          <h1 className="home-welcome-title">
             Welcome back, {user?.fullName || 'Creator'} 👋
           </h1>
-          <p style={{ fontSize: '15px', color: '#5F6B85', lineHeight: '1.5', marginBottom: '24px' }}>
+          <p className="home-welcome-desc">
             What would you like to explore or create today? Start a conversation, verify real-time facts with web search, or generate marketing copy in seconds.
           </p>
 
@@ -145,6 +144,8 @@ export const UserHomePage: React.FC = () => {
               <button
                 type="submit"
                 className="btn btn-primary home-ask-btn"
+                title="Ask AI"
+                aria-label="Ask AI"
               >
                 <Send size={14} />
                 <span>Ask AI</span>
@@ -174,22 +175,8 @@ export const UserHomePage: React.FC = () => {
       </div>
 
       {/* MVP Platforms Accelerator Banner (Johnny's Directive: 8 Most Visited Platforms) */}
-      <div
-        className="glass-panel"
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: '14px',
-          padding: '16px 20px',
-          marginBottom: '20px',
-          background: 'linear-gradient(135deg, rgba(110, 86, 207, 0.08) 0%, rgba(5, 150, 105, 0.05) 100%)',
-          border: '1px solid rgba(110, 86, 207, 0.2)',
-          borderRadius: '12px'
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: '260px' }}>
+      <div className="glass-panel home-mvp-banner">
+        <div className="home-mvp-info">
           <div
             style={{
               width: '42px',
@@ -200,13 +187,14 @@ export const UserHomePage: React.FC = () => {
               alignItems: 'center',
               justifyContent: 'center',
               color: '#FFFFFF',
-              boxShadow: '0 4px 12px rgba(110, 86, 207, 0.3)'
+              boxShadow: '0 4px 12px rgba(110, 86, 207, 0.3)',
+              flexShrink: 0
             }}
           >
             <Layers size={22} />
           </div>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ minWidth: 0, flex: 1 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
               <span style={{ fontSize: '15px', fontWeight: '800', color: '#111625' }}>
                 Most Visited Platforms (MVP) Suite
               </span>
@@ -218,8 +206,8 @@ export const UserHomePage: React.FC = () => {
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-          <div style={{ display: 'flex', gap: '4px', fontSize: '16px', marginRight: '6px' }}>
+        <div className="home-mvp-action-row">
+          <div style={{ display: 'flex', gap: '4px', fontSize: '16px', marginRight: '6px', flexWrap: 'wrap' }}>
             <span title="YouTube">▶️</span>
             <span title="TikTok">🎵</span>
             <span title="Instagram">📸</span>
@@ -229,7 +217,7 @@ export const UserHomePage: React.FC = () => {
             <span title="Google">🔍</span>
             <span title="Facebook">👥</span>
           </div>
-          <NavLink to="/user/mvp" className="btn btn-primary btn-sm" style={{ padding: '8px 16px', fontSize: '13px', fontWeight: '700' }}>
+          <NavLink to="/user/mvp" className="btn btn-primary btn-sm home-mvp-btn" style={{ padding: '8px 16px', fontSize: '13px', fontWeight: '700' }}>
             <span>Launch MVP Suite</span>
             <ArrowRight size={14} />
           </NavLink>
@@ -325,7 +313,10 @@ export const UserHomePage: React.FC = () => {
                   background: '#FAFBFD',
                   border: '1px solid #E8ECF5',
                   cursor: 'pointer',
-                  transition: 'all 0.15s ease'
+                  transition: 'all 0.15s ease',
+                  width: '100%',
+                  boxSizing: 'border-box',
+                  minWidth: 0
                 }}
                 className="hover-highlight"
               >
@@ -370,7 +361,10 @@ export const UserHomePage: React.FC = () => {
                   borderRadius: '10px',
                   background: '#FAFBFD',
                   border: '1px solid #E8ECF5',
-                  gap: '10px'
+                  gap: '10px',
+                  width: '100%',
+                  boxSizing: 'border-box',
+                  minWidth: 0
                 }}
               >
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', overflow: 'hidden', minWidth: 0, flex: 1 }}>

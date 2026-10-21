@@ -340,3 +340,147 @@
   align-items: center;
   gap: 5px;
 }
+
+/* ==========================================================================
+   MOBILE RESPONSIVE STYLES (Small Business & Marketing Content)
+   ========================================================================== */
+@media (max-width: 860px) {
+  .starter-ad-config-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .dashboard-page-container {
+    padding: 12px !important;
+    gap: 14px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .dashboard-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+
+  .dashboard-title-group h1 {
+    font-size: 19px !important;
+    line-height: 1.3 !important;
+    flex-wrap: wrap !important;
+  }
+
+  .dashboard-subtitle {
+    font-size: 12.5px !important;
+    line-height: 1.45 !important;
+  }
+
+  .ad-bridge-hero,
+  .b4b-training-hero-card {
+    padding: 16px 14px !important;
+    border-radius: 12px !important;
+  }
+
+  .b4b-title {
+    font-size: 18px !important;
+    line-height: 1.3 !important;
+  }
+
+  .b4b-desc {
+    font-size: 12.5px !important;
+  }
+
+  .b4b-perks-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .ad-templates-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .starter-ad-card {
+    padding: 16px 14px !important;
+  }
+
+  .starter-ad-config-panel {
+    padding: 16px 14px !important;
+    border-radius: 12px !important;
+  }
+
+  .starter-budget-model-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .starter-budget-buttons-row {
+    display: flex !important;
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .starter-budget-buttons-row button {
+    flex: 1 1 calc(20% - 6px) !important;
+    min-width: 44px !important;
+    padding: 8px 4px !important;
+    font-size: 11.5px !important;
+  }
+
+  .starter-billing-buttons-row {
+    display: flex !important;
+    gap: 8px !important;
+  }
+
+  .starter-billing-buttons-row button {
+    flex: 1 !important;
+    padding: 8px 6px !important;
+    font-size: 11.5px !important;
+    white-space: nowrap !important;
+  }
+
+  .starter-deploy-actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+
+  .starter-deploy-actions button,
+  .starter-deploy-actions a {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .starter-ad-simulator-box {
+    padding: 16px 12px !important;
+    border-radius: 12px !important;
+  }
+
+  .starter-simulator-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+  }
+
+  .b4b-support-lead-card {
+    padding: 14px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .b4b-actions-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+  }
+
+  .b4b-actions-row button,
+  .b4b-actions-row a {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
